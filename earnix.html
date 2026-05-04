@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<!-- ══ PRIMARY SEO META ══ -->
+<title>Earnix — Earn Daily, Earn Smart</title>
+<meta name="description" content="Earnix is Nigeria's #1 online earning platform. Complete simple social media tasks daily and earn real money. Join thousands earning ₦1,200–₦40,000 per day.">
+<meta name="keywords" content="earnix, earn money online nigeria, online earning platform, earn daily, make money online, social media tasks, earn from home nigeria, earnix app">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Earnix">
+<meta name="theme-color" content="#2563EB">
+<link rel="canonical" href="">
+
+<!-- ══ OPEN GRAPH (Facebook, WhatsApp) ══ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Earnix — Earn Daily, Earn Smart">
+<meta property="og:description" content="Complete simple social media tasks and earn real money daily. Join thousands of Nigerians earning ₦1,200–₦40,000 per day on Earnix.">
+<meta property="og:image" content="Gemini_Generated_Image_s4t1yms4t1yms4t1.png">
+<meta property="og:url" content="">
+<meta property="og:site_name" content="Earnix">
+<meta property="og:locale" content="en_NG">
+
+<!-- ══ TWITTER CARD ══ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnix — Earn Daily, Earn Smart">
+<meta name="twitter:description" content="Complete simple social media tasks and earn real money daily in Nigeria.">
+<meta name="twitter:image" content="Gemini_Generated_Image_s4t1yms4t1yms4t1.png">
+
+<!-- ══ SCHEMA.ORG STRUCTURED DATA ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Earnix",
+  "description": "Nigeria's online earning platform — complete social media tasks and earn real money daily.",
+  "url": "",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "NGN",
+    "description": "Free to join with referral code"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "10000"
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --b50:#EFF6FF;--b100:#DBEAFE;--b200:#BFDBFE;
+  --b500:#3B82F6;--b600:#2563EB;--b700:#1D4ED8;--b800:#1E40AF;--b900:#1E3A8A;
+  --w:#FFFFFF;--g50:#F8FAFC;--g100:#F1F5F9;--g200:#E2E8F0;--g300:#CBD5E1;
+  --g400:#94A3B8;--g500:#64748B;--g600:#475569;--g900:#0F172A;
+  --grn:#10B981;--grn2:#D1FAE5;--red:#EF4444;--red2:#FEE2E2;--amb:#F59E0B;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Sora',sans-serif;background:var(--g50);color:var(--g900);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+
+/* PAGES */
+.page{display:none;min-height:100vh;animation:fu .22s ease-out}
+.page.active{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ LOADER ══ */
+#loader{position:fixed;inset:0;background:linear-gradient(160deg,var(--b700),var(--b900));display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .4s}
+#loader.off{opacity:0;pointer-events:none}
+.ld-icon{width:72px;height:72px;background:rgba(255,255,255,.12);border-radius:24px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:2px solid rgba(255,255,255,.18)}
+.ld-brand{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:28px}
+.ld-spin{width:30px;height:30px;border:3px solid rgba(255,255,255,.18);border-top-color:#fff;border-radius:50%;animation:spin .75s linear infinite;margin-bottom:10px}
+.ld-txt{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.15em;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ══ TOAST ══ */
+#toast{position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--g900);color:#fff;padding:11px 20px;border-radius:100px;font-size:13px;font-weight:600;z-index:400;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;max-width:90%;text-align:center;pointer-events:none}
+#toast.on{transform:translateX(-50%) translateY(0)}
+#toast.s{background:var(--grn)}#toast.e{background:var(--red)}#toast.i{background:var(--b600)}
+
+/* ══ LANDING PAGE ══ */
+#pg-land{background:#fff;padding-bottom:0;min-height:100vh}
+
+/* Land Nav */
+.land-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:50;border-bottom:1px solid var(--g100)}
+.land-logo{display:flex;align-items:center;gap:8px}
+.land-logo-ic{width:34px;height:34px;background:var(--b600);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.land-logo-txt{font-size:18px;font-weight:800;color:var(--b700)}
+.land-nav-btns{display:flex;gap:8px}
+.land-btn-outline{padding:7px 16px;border:2px solid var(--b600);border-radius:10px;background:transparent;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:var(--b600);cursor:pointer;transition:all .2s}
+.land-btn-outline:hover{background:var(--b50)}
+.land-btn-fill{padding:7px 16px;border:none;border-radius:10px;background:var(--b600);font-family:'Sora',sans-serif;font-size:13px;font-weight:700;color:#fff;cursor:pointer;transition:all .2s}
+.land-btn-fill:hover{background:var(--b700)}
+
+/* Hero */
+.hero{background:linear-gradient(160deg,var(--b600) 0%,var(--b900) 100%);padding:48px 24px 56px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-60px;width:260px;height:260px;background:rgba(255,255,255,.05);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-40px;width:220px;height:220px;background:rgba(255,255,255,.04);border-radius:50%}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:18px;backdrop-filter:blur(8px)}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;animation:pulse2 2s infinite}
+@keyframes pulse2{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.hero-title{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:14px;position:relative}
+.hero-title span{color:#93C5FD}
+.hero-sub{font-size:14px;opacity:.8;line-height:1.7;margin-bottom:28px;position:relative;max-width:320px;margin-left:auto;margin-right:auto}
+.hero-cta{display:flex;flex-direction:column;gap:10px;position:relative}
+.hero-btn-main{padding:16px 24px;background:#fff;color:var(--b700);border:none;border-radius:16px;font-family:'Sora',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.hero-btn-main:active{transform:scale(.97)}
+.hero-btn-sec{padding:14px 24px;background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:16px;font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
+.hero-btn-sec:active{transform:scale(.97)}
+.hero-stats{display:flex;justify-content:center;gap:0;margin-top:36px;background:rgba(255,255,255,.1);border-radius:18px;padding:16px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);position:relative}
+.hstat{flex:1;text-align:center;padding:0 8px}
+.hstat+.hstat{border-left:1px solid rgba(255,255,255,.15)}
+.hstat-val{font-size:20px;font-weight:800;margin-bottom:2px}
+.hstat-lbl{font-size:10px;opacity:.65;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+/* Ref Banner */
+.ref-banner{background:linear-gradient(135deg,#065F46,#047857);margin:16px;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;display:none}
+.ref-banner.show{display:flex}
+.ref-banner-ic{width:38px;height:38px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ref-banner-txt{flex:1}
+.ref-banner-ti{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
+.ref-banner-sub{font-size:11px;color:rgba(255,255,255,.7)}
+.ref-banner-code{background:rgba(255,255,255,.2);border-radius:8px;padding:4px 10px;font-size:13px;font-weight:800;color:#fff;letter-spacing:2px;flex-shrink:0}
+
+/* How It Works */
+.section{padding:32px 20px}
+.section-badge{display:inline-block;background:var(--b50);color:var(--b700);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-size:22px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px}
+.section-sub{font-size:13px;color:var(--g500);line-height:1.65;margin-bottom:24px}
+.step-card{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--g50);border-radius:16px;margin-bottom:10px;border:1px solid var(--g100)}
+.step-num{width:38px;height:38px;background:var(--b600);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0}
+.step-ti{font-size:14px;font-weight:700;margin-bottom:3px}
+.step-sub{font-size:12px;color:var(--g500);line-height:1.55}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feat{background:var(--g50);border-radius:16px;padding:16px;border:1px solid var(--g100)}
+.feat-ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:18px}
+.feat-ti{font-size:13px;font-weight:700;margin-bottom:4px}
+.feat-sub{font-size:12px;color:var(--g500);line-height:1.5}
+
+/* VIP Preview */
+.vip-preview{background:linear-gradient(135deg,var(--b600),var(--b800));border-radius:20px;padding:20px;color:#fff;margin-bottom:10px}
+.vip-prev-name{font-size:16px;font-weight:800;margin-bottom:3px}
+.vip-prev-dep{font-size:12px;opacity:.7;margin-bottom:14px}
+.vip-prev-stats{display:flex;gap:0}
+.vp-stat{flex:1;text-align:center;padding:10px 5px;background:rgba(255,255,255,.12);border-radius:10px}
+.vp-stat+.vp-stat{margin-left:6px}
+.vp-sv{font-size:15px;font-weight:800}
+.vp-sl{font-size:10px;opacity:.65;margin-top:2px;font-weight:600}
+
+/* Testimonials */
+.testi-card{background:#fff;border-radius:16px;padding:16px;border:1px solid var(--g100);margin-bottom:10px}
+.testi-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.testi-av{width:38px;height:38px;border-radius:12px;background:var(--b100);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--b700)}
+.testi-name{font-size:13px;font-weight:700}
+.testi-loc{font-size:11px;color:var(--g400)}
+.testi-stars{color:var(--amb);font-size:12px;margin-bottom:6px}
+.testi-txt{font-size:13px;color:var(--g600);line-height:1.6;font-style:italic}
+
+/* FAQ */
+.faq-item{background:#fff;border-radius:14px;margin-bottom:7px;overflow:hidden;cursor:pointer;border:1px solid var(--g100)}
+.faq-q{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:9px}
+.faq-qt{font-size:13px;font-weight:700;flex:1}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a.op{max-height:200px}
+.faq-at{padding:0 16px 14px;font-size:12px;color:var(--g500);line-height:1.7}
+
+/* Land Footer */
+.land-footer{background:var(--g900);color:rgba(255,255,255,.6);padding:24px 20px;text-align:center}
+.land-footer-logo{font-size:20px;font-weight:800;color:#fff;margin-bottom:6px}
+.land-footer-txt{font-size:12px;line-height:1.7;margin-bottom:14px}
+.land-footer-links{display:flex;justify-content:center;gap:16px;margin-bottom:16px}
+.land-footer-link{font-size:12px;color:rgba(255,255,255,.5);cursor:pointer;transition:color .2s}
+.land-footer-link:hover{color:#fff}
+.land-footer-copy{font-size:11px;color:rgba(255,255,255,.3)}
+
+/* CTA Bar */
+.cta-bar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--g100);padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:40}
+.cta-bar-btn{flex:1;padding:14px;border:none;border-radius:14px;font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.cta-bar-btn.login{background:var(--g100);color:var(--g700)}.cta-bar-btn.login:active{transform:scale(.97)}
+.cta-bar-btn.join{background:linear-gradient(135deg,var(--b500),var(--b700));color:#fff;box-shadow:0 6px 20px rgba(37,99,235,.28)}.cta-bar-btn.join:active{transform:scale(.97)}
+
+/* ══ AUTH ══ */
+#pg-auth{background:linear-gradient(160deg,var(--b600) 0%,var(--b900) 100%);min-height:100vh;display:none;flex-direction:column;padding-bottom:0}
+#pg-auth.active{display:flex}
+.auth-head{padding:40px 28px 28px;text-align:center}
+.auth-logo{width:64px;height:64px;background:rgba(255,255,255,.14);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;border:2px solid rgba(255,255,255,.22)}
+.auth-title{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.auth-sub{font-size:13px;color:rgba(255,255,255,.55);margin-top:3px}
+.auth-card{background:#fff;border-radius:30px 30px 0 0;flex:1;padding:24px 20px;box-shadow:0 -20px 60px rgba(0,0,0,.18)}
+.tab-row{display:flex;background:var(--g100);border-radius:12px;padding:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:9px;border:none;background:transparent;border-radius:9px;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--g500);cursor:pointer;transition:all .2s}
+.tab-btn.on{background:#fff;color:var(--b600);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.auth-form{display:none}.auth-form.on{display:block}
+.fg{margin-bottom:12px}
+.fl{font-size:11px;font-weight:700;color:var(--g500);letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px;display:block}
+.fi{width:100%;padding:11px 13px;border:2px solid var(--g200);border-radius:12px;font-family:'Sora',sans-serif;font-size:14px;color:var(--g900);background:var(--g50);outline:none;transition:all .2s}
+.fi:focus{border-color:var(--b500);background:#fff}
+.fi.err{border-color:var(--red)}
+.fi-note{font-size:11px;color:var(--g400);margin-top:4px}
+.fi-note.req{color:var(--red)}
+.err-box{background:var(--red2);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:10px 12px;font-size:12px;color:#991B1B;margin-bottom:12px;display:none}
+.err-box.on{display:block}
+.btn-p{width:100%;padding:14px;background:linear-gradient(135deg,var(--b500),var(--b700));color:#fff;border:none;border-radius:14px;font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 8px 24px rgba(37,99,235,.28);margin-top:4px}
+.btn-p:active{transform:scale(.97)}.btn-p:disabled{opacity:.6;cursor:not-allowed}
+
+/* ══ TOP BAR ══ */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--g100)}
+.tb-l{display:flex;flex-direction:column}.tb-ey{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.1em}.tb-ti{font-size:16px;font-weight:800}
+.ic-btn{width:36px;height:36px;background:var(--g100);border-radius:11px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g600);transition:all .2s}
+.ic-btn:active{transform:scale(.9)}
+
+/* PAGE HEADER */
+.phdr{display:flex;align-items:center;gap:12px;padding:13px 15px;background:#fff;border-bottom:1px solid var(--g100)}
+.bk{width:34px;height:34px;border:none;background:var(--g100);border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g600);flex-shrink:0}
+.bk:active{transform:scale(.9)}.phdr-ti{font-size:15px;font-weight:800}
+
+/* ══ BALANCE CARD ══ */
+.bal-card{margin:12px;background:linear-gradient(135deg,var(--b600) 0%,var(--b800) 100%);border-radius:24px;padding:20px;color:#fff;position:relative;overflow:hidden}
+.bal-card::before{content:'';position:absolute;top:-60px;right:-40px;width:180px;height:180px;background:rgba(255,255,255,.05);border-radius:50%}
+.bal-lbl{font-size:10px;font-weight:700;opacity:.65;letter-spacing:.12em;text-transform:uppercase}
+.bal-amt{font-size:34px;font-weight:800;letter-spacing:-1px;margin:5px 0 16px;position:relative}
+.lvl-badge{position:absolute;top:0;right:0;background:rgba(255,255,255,.18);border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700}
+.bal-acts{display:flex;gap:8px;position:relative}
+.bal-btn{flex:1;padding:10px;border:none;border-radius:12px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.bal-btn.rc{background:rgba(255,255,255,.16);color:#fff}.bal-btn.wd{background:#fff;color:var(--b700)}
+.bal-btn:active{transform:scale(.95)}
+
+/* TICKER */
+.ticker{margin:10px 12px;background:var(--b50);border:1px solid var(--b100);border-radius:11px;padding:8px 11px;display:flex;align-items:center;gap:7px}
+.ticker-txt{font-size:12px;font-weight:500;color:var(--b700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* QUICK GRID */
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 12px}
+.qi{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 0;background:#fff;border-radius:16px;cursor:pointer;transition:all .2s;border:1px solid var(--g100)}
+.qi:active{transform:scale(.93)}
+.qi-ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.qi-lbl{font-size:10px;font-weight:600;color:var(--g600);text-align:center}
+
+/* SECTIONS */
+.sec{padding:0 12px 14px}
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;padding-top:14px;margin-bottom:10px}
+.sec-ti{font-size:11px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.1em}
+.sec-lnk{font-size:12px;font-weight:600;color:var(--b500)}
+
+/* TASK CARD */
+.tc{background:#fff;border-radius:16px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:7px;border:1px solid var(--g100)}
+.tc-ic{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.tc-info{flex:1}
+.tc-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.tc-rw{font-size:12px;font-weight:700;color:var(--grn)}
+.tc-sub{font-size:10px;color:var(--g400);font-weight:600;margin-top:2px}
+.tc-btn{padding:8px 13px;background:var(--b600);color:#fff;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;flex-shrink:0}
+.tc-btn:active{transform:scale(.93)}
+.tc-btn.done,.tc-btn.lkd{background:var(--g100);color:var(--g400);cursor:default}
+
+/* VIP CARD */
+.vc{background:#fff;border-radius:18px;padding:15px;margin-bottom:8px;border:2px solid var(--g100)}
+.vc.cur{border-color:var(--b500);background:var(--b50)}
+.vc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px}
+.vc-name{font-size:15px;font-weight:800}.vc-sub{font-size:11px;color:var(--g400);margin-top:1px}
+.vc-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;background:var(--b100);color:var(--b700)}
+.vc-badge.cur{background:var(--b600);color:#fff}
+.vc-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.vc-sl{font-size:10px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.vc-sv{font-size:13px;font-weight:800}
+.vc-btn{width:100%;padding:10px;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.vc-btn.up{background:var(--b600);color:#fff}.vc-btn.up:active{transform:scale(.97)}
+.vc-btn.cu{background:var(--g100);color:var(--g400);cursor:default}
+
+/* PROFILE */
+.prof-hdr{background:linear-gradient(135deg,var(--b600),var(--b800));padding:28px 15px 48px;text-align:center;color:#fff}
+.prof-av{width:68px;height:68px;background:rgba(255,255,255,.18);border-radius:22px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.28)}
+.prof-name{font-size:19px;font-weight:800}
+.prof-lvl{font-size:12px;opacity:.7;margin-top:2px}
+.prof-card{background:#fff;border-radius:22px;padding:14px;margin:-24px 12px 10px;box-shadow:0 4px 20px rgba(0,0,0,.09)}
+.prof-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.pstat{text-align:center;padding:9px 4px;background:var(--g50);border-radius:11px}
+.pstat-v{font-size:14px;font-weight:800}.pstat-l{font-size:10px;color:var(--g500);font-weight:600;margin-top:1px}
+.menu-list{margin:0 12px}
+.mi{display:flex;align-items:center;gap:11px;padding:13px;background:#fff;border-radius:13px;margin-bottom:5px;cursor:pointer;transition:all .2s;border:1px solid var(--g100)}
+.mi:active{transform:scale(.98)}
+.mi-ic{width:35px;height:35px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mi-lbl{font-size:13px;font-weight:600;flex:1}
+
+/* AMOUNT FORM */
+.amt-card{background:#fff;margin:12px;border-radius:18px;padding:18px}
+.amt-lbl{font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.amt-row{display:flex;align-items:center;border-bottom:2px solid var(--g100);padding-bottom:12px;margin-bottom:14px}
+.amt-cur{font-size:20px;color:var(--g400);margin-right:4px;font-weight:600}
+.amt-inp{font-size:28px;font-weight:800;color:var(--g900);border:none;outline:none;width:100%;font-family:'Sora',sans-serif}
+.shortcuts{display:flex;gap:5px;flex-wrap:wrap}
+.sc{padding:6px 11px;border:2px solid var(--g200);border-radius:8px;background:#fff;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:var(--g600);cursor:pointer;transition:all .2s}
+.sc:active{border-color:var(--b500);color:var(--b600)}
+
+/* INFO BOX */
+.ibox{background:var(--b50);border:1px solid var(--b100);border-radius:13px;padding:12px;margin:0 12px 12px;display:flex;align-items:flex-start;gap:8px}
+.ibox p{font-size:12px;color:var(--b700);font-weight:500;line-height:1.55}
+
+/* SUBMIT */
+.sub-area{padding:0 12px 16px}
+.sub-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--b500),var(--b700));color:#fff;border:none;border-radius:15px;font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 8px 24px rgba(37,99,235,.22)}
+.sub-btn:active{transform:scale(.98)}.sub-btn:disabled{opacity:.6;cursor:not-allowed}
+
+/* TEAM */
+.ref-card{background:linear-gradient(135deg,var(--b600),var(--b800));margin:12px;border-radius:20px;padding:18px;color:#fff;text-align:center}
+.ref-code{background:rgba(255,255,255,.14);border-radius:11px;padding:12px;margin:12px 0;font-size:20px;font-weight:800;letter-spacing:4px}
+.ref-copy{background:#fff;color:var(--b700);border:none;border-radius:10px;padding:9px 20px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.ref-copy:active{transform:scale(.95)}
+.team-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:0 12px 13px}
+.tstat{background:#fff;border-radius:13px;padding:12px 8px;text-align:center}
+.tstat-v{font-size:17px;font-weight:800}.tstat-l{font-size:10px;color:var(--g500);font-weight:600;margin-top:2px}
+
+/* TX ITEM */
+.txi{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#fff;border-radius:13px;margin-bottom:6px}
+.txi-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.txi-ic.cr{background:var(--grn2);color:var(--grn)}.txi-ic.db{background:var(--red2);color:var(--red)}
+.txi-d{flex:1}.txi-ti{font-size:13px;font-weight:700}.txi-dt{font-size:11px;color:var(--g400);margin-top:1px}
+.txi-am{font-size:13px;font-weight:800}.txi-am.cr{color:var(--grn)}.txi-am.db{color:var(--red)}
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700}
+.badge.p{background:var(--amb);color:#fff;opacity:.85}.badge.a{background:var(--grn2);color:#065F46}.badge.r{background:var(--red2);color:#991B1B}
+
+/* HISTORY TABS */
+.htabs{display:flex;gap:6px;padding:12px 12px 0}
+.htab{padding:7px 16px;border:2px solid var(--g200);border-radius:9px;background:#fff;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;color:var(--g600);cursor:pointer;transition:all .2s}
+.htab.on{border-color:var(--b600);color:var(--b600);background:var(--b50)}
+
+/* THANKS / COMING SOON */
+.thanks-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:68vh;text-align:center;padding:28px 20px}
+.thanks-ic{width:82px;height:82px;background:var(--b100);border-radius:24px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.thanks-ti{font-size:20px;font-weight:800;margin-bottom:6px}
+.thanks-sub{font-size:13px;color:var(--g500);line-height:1.65;max-width:270px}
+.thanks-bk{margin-top:24px;padding:12px 24px;background:var(--b600);color:#fff;border:none;border-radius:13px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.thanks-bk:active{transform:scale(.95)}
+
+/* FAQ */
+.faq-item2{background:#fff;border-radius:13px;margin-bottom:6px;overflow:hidden;cursor:pointer;border:1px solid var(--g100)}
+.faq-q2{padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.faq-qt2{font-size:13px;font-weight:700;flex:1}
+.faq-a2{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a2.op{max-height:200px}
+.faq-at2{padding:0 15px 13px;font-size:12px;color:var(--g500);line-height:1.7}
+
+/* INVITE */
+.invite-step{display:flex;gap:11px;align-items:flex-start;margin-bottom:12px}
+.invite-step-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0}
+
+/* NAV */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--g100);display:flex;padding:7px 0 calc(7px + env(safe-area-inset-bottom));z-index:60}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;background:none;border:none;cursor:pointer;transition:all .15s;color:var(--g400)}
+.ni.on{color:var(--b600)}.ni.on svg{transform:translateY(-2px)}
+.ni svg{transition:transform .15s}.ni-lbl{font-size:10px;font-weight:700;letter-spacing:.02em}
+
+/* EMPTY */
+.empty{text-align:center;padding:28px 16px;color:var(--g400)}
+.empty p{font-size:13px;font-weight:600}
+
+/* APP PAGE PADDING */
+.app-page{padding-bottom:80px}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+  <div class="ld-brand">earnix</div>
+  <div class="ld-spin"></div>
+  <p class="ld-txt">Loading...</p>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- MAINTENANCE -->
+<div id="maint-screen" style="display:none;position:fixed;inset:0;background:linear-gradient(160deg,var(--b700),var(--b900));z-index:998;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;color:#fff">
+  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:16px;opacity:.7"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  <h2 style="font-size:22px;font-weight:800;margin-bottom:8px">Under Maintenance</h2>
+  <p style="font-size:13px;opacity:.65;max-width:280px;line-height:1.7" id="maint-msg">We are performing scheduled maintenance. Please check back shortly.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════ -->
+<div id="pg-land" class="page active">
+
+  <!-- Nav -->
+  <nav class="land-nav">
+    <div class="land-logo">
+      <div class="land-logo-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <span class="land-logo-txt" id="land-site-name">earnix</span>
+    </div>
+    <div class="land-nav-btns">
+      <button class="land-btn-outline" onclick="app.showAuth('login')">Sign In</button>
+      <button class="land-btn-fill" onclick="app.showAuth('register')">Join Now</button>
+    </div>
+  </nav>
+
+  <!-- Referral Banner (shown if ?ref= in URL) -->
+  <div class="ref-banner" id="ref-banner">
+    <div class="ref-banner-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div class="ref-banner-txt">
+      <div class="ref-banner-ti">You've been invited! 🎉</div>
+      <div class="ref-banner-sub">Your referral code has been applied</div>
+    </div>
+    <div class="ref-banner-code" id="ref-banner-code">------</div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Live & Paying</div>
+    <h1 class="hero-title">Earn Real Money<br><span>Every Single Day</span></h1>
+    <p class="hero-sub">Complete simple social media tasks and earn ₦1,200–₦40,000 daily. Join thousands of Nigerians earning from home.</p>
+    <div class="hero-cta">
+      <button class="hero-btn-main" onclick="app.showAuth('register')">🚀 Start Earning Today</button>
+      <button class="hero-btn-sec" onclick="app.showAuth('login')">I already have an account</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val">10K+</div><div class="hstat-lbl">Members</div></div>
+      <div class="hstat"><div class="hstat-val">₦50M+</div><div class="hstat-lbl">Paid Out</div></div>
+      <div class="hstat"><div class="hstat-val">4.9★</div><div class="hstat-lbl">Rating</div></div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="section-badge">How It Works</div>
+    <h2 class="section-title">Earn in 3 Simple Steps</h2>
+    <p class="section-sub">No special skills needed. Start earning in minutes.</p>
+    <div class="step-card"><div class="step-num">1</div><div><div class="step-ti">Register with a referral code</div><div class="step-sub">Get a valid referral code from an existing member. Registration is free.</div></div></div>
+    <div class="step-card"><div class="step-num">2</div><div><div class="step-ti">Recharge & unlock your VIP level</div><div class="step-sub">Fund your account to activate task access and unlock higher earning levels.</div></div></div>
+    <div class="step-card"><div class="step-num" style="background:var(--grn)">✓</div><div><div class="step-ti">Complete tasks & get paid daily</div><div class="step-sub">Follow, like, watch — earn real money instantly. Withdraw anytime to your bank account.</div></div></div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" style="padding-top:0">
+    <div class="section-badge">Why Earnix</div>
+    <h2 class="section-title">Built for Nigerians</h2>
+    <p class="section-sub" style="margin-bottom:16px">Everything you need to earn, grow and withdraw easily.</p>
+    <div class="features-grid">
+      <div class="feat"><div class="feat-ic" style="background:#EFF6FF">💸</div><div class="feat-ti">Daily Payouts</div><div class="feat-sub">Earn every single day by completing your assigned tasks</div></div>
+      <div class="feat"><div class="feat-ic" style="background:#D1FAE5">📱</div><div class="feat-ti">Simple Tasks</div><div class="feat-sub">Just follow, like or watch social media content</div></div>
+      <div class="feat"><div class="feat-ic" style="background:#FEF3C7">👥</div><div class="feat-ti">Refer & Earn</div><div class="feat-sub">Get <span id="land-ref-pct">5</span>% commission on every deposit from your team</div></div>
+      <div class="feat"><div class="feat-ic" style="background:#FFF1F2">🏦</div><div class="feat-ti">Easy Withdrawal</div><div class="feat-sub">Withdraw to any Nigerian bank within 1–3 business days</div></div>
+      <div class="feat"><div class="feat-ic" style="background:#F5F3FF">⭐</div><div class="feat-ti">VIP Levels</div><div class="feat-sub">Unlock higher tasks and bigger rewards with each level</div></div>
+      <div class="feat"><div class="feat-ic" style="background:#ECFDF5">🔒</div><div class="feat-ti">Secure & Safe</div><div class="feat-sub">All transactions are verified and processed by our admin team</div></div>
+    </div>
+  </section>
+
+  <!-- VIP Plans -->
+  <section class="section" style="padding-top:0">
+    <div class="section-badge">VIP Plans</div>
+    <h2 class="section-title">Choose Your Level</h2>
+    <p class="section-sub" style="margin-bottom:16px">Higher VIP = more tasks + bigger rewards per task.</p>
+    <div id="land-vip-cards">
+      <div class="vip-preview"><div class="vip-prev-name">Bronze — Level 1</div><div class="vip-prev-dep">Min Deposit: ₦12,000</div><div class="vip-prev-stats"><div class="vp-stat"><div class="vp-sv">₦1,200</div><div class="vp-sl">Per Task</div></div><div class="vp-stat"><div class="vp-sv">2</div><div class="vp-sl">Tasks/Day</div></div><div class="vp-stat"><div class="vp-sv">₦2,400</div><div class="vp-sl">Daily</div></div></div></div>
+      <div class="vip-preview" style="background:linear-gradient(135deg,#047857,#065F46)"><div class="vip-prev-name">Gold — Level 3</div><div class="vip-prev-dep">Min Deposit: ₦250,000</div><div class="vip-prev-stats"><div class="vp-stat"><div class="vp-sv">₦10,000</div><div class="vp-sl">Per Task</div></div><div class="vp-stat"><div class="vp-sv">5</div><div class="vp-sl">Tasks/Day</div></div><div class="vp-stat"><div class="vp-sv">₦50,000</div><div class="vp-sl">Daily</div></div></div></div>
+    </div>
+    <button onclick="app.showAuth('register')" style="width:100%;padding:14px;background:var(--b600);color:#fff;border:none;border-radius:14px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px">View All VIP Levels →</button>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" style="padding-top:0">
+    <div class="section-badge">Reviews</div>
+    <h2 class="section-title">What Members Say</h2>
+    <div class="testi-card"><div class="testi-top"><div class="testi-av">A</div><div><div class="testi-name">Adaeze O.</div><div class="testi-loc">Lagos, Nigeria</div></div></div><div class="testi-stars">★★★★★</div><div class="testi-txt">"I've been on Earnix for 3 months and I've withdrawn over ₦180,000. It's real and it pays!"</div></div>
+    <div class="testi-card"><div class="testi-top"><div class="testi-av" style="background:#D1FAE5;color:var(--grn)">K</div><div><div class="testi-name">Kabiru M.</div><div class="testi-loc">Kano, Nigeria</div></div></div><div class="testi-stars">★★★★★</div><div class="testi-txt">"Started with Bronze level, now I'm on Gold. The referral commissions alone pay my bills every month."</div></div>
+    <div class="testi-card"><div class="testi-top"><div class="testi-av" style="background:#FEF3C7;color:var(--amb)">C</div><div><div class="testi-name">Chiamaka E.</div><div class="testi-loc">Enugu, Nigeria</div></div></div><div class="testi-stars">★★★★★</div><div class="testi-txt">"Best earning platform in Nigeria. Legit, fast withdrawal and great support team."</div></div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top:0">
+    <div class="section-badge">FAQ</div>
+    <h2 class="section-title">Common Questions</h2>
+    <div id="land-faq"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="land-footer">
+    <div class="land-footer-logo" id="foot-site-name">earnix</div>
+    <p class="land-footer-txt" id="foot-tagline">Earn Daily. Earn Smart.<br>Nigeria's trusted online earning platform.</p>
+    <div class="land-footer-links">
+      <span class="land-footer-link" onclick="app.showAuth('register')">Join Now</span>
+      <span class="land-footer-link" onclick="app.showAuth('login')">Sign In</span>
+      <span class="land-footer-link" id="foot-email">Contact</span>
+    </div>
+    <p class="land-footer-copy">© 2025 Earnix. All rights reserved.</p>
+  </footer>
+
+  <!-- CTA Bar -->
+  <div class="cta-bar">
+    <button class="cta-bar-btn login" onclick="app.showAuth('login')">Sign In</button>
+    <button class="cta-bar-btn join" onclick="app.showAuth('register')">🚀 Join & Earn</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     AUTH
+══════════════════════════════════════ -->
+<div id="pg-auth" class="page">
+  <div class="auth-head">
+    <div class="auth-logo"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <div class="auth-title" id="auth-site-name">earnix</div>
+    <div class="auth-sub" id="auth-tagline">Earn Daily. Earn Smart.</div>
+  </div>
+  <div class="auth-card">
+    <div class="tab-row">
+      <button class="tab-btn on" onclick="app.switchTab('login')">Sign In</button>
+      <button class="tab-btn" onclick="app.switchTab('register')">Register</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="fm-login" class="auth-form on">
+      <div id="login-err" class="err-box"></div>
+      <div class="fg"><label class="fl">Phone Number</label><input type="tel" id="l-phone" class="fi" placeholder="08012345678"></div>
+      <div class="fg"><label class="fl">Password</label><input type="password" id="l-pass" class="fi" placeholder="Your password"></div>
+      <button class="btn-p" id="login-btn" onclick="app.login()">Sign In</button>
+      <p style="text-align:center;margin-top:11px;font-size:12px;color:var(--g400)">No account? <span style="color:var(--b600);font-weight:700;cursor:pointer" onclick="app.switchTab('register')">Register</span> &nbsp;·&nbsp; <span style="color:var(--b600);font-weight:700;cursor:pointer" onclick="app.go('land')">← Back</span></p>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="fm-register" class="auth-form">
+      <div id="reg-err" class="err-box"></div>
+      <div class="fg"><label class="fl">Username</label><input type="text" id="r-user" class="fi" placeholder="Choose a username"></div>
+      <div class="fg"><label class="fl">Phone Number</label><input type="tel" id="r-phone" class="fi" placeholder="08012345678"></div>
+      <div class="fg"><label class="fl">Password</label><input type="password" id="r-pass" class="fi" placeholder="At least 6 characters"></div>
+      <div class="fg">
+        <label class="fl">Referral Code <span style="color:var(--red);font-size:12px">*Required</span></label>
+        <input type="text" id="r-ref" class="fi" placeholder="Enter referral code" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+        <p class="fi-note req">⚠ A valid referral code is required to join.</p>
+      </div>
+      <button class="btn-p" id="reg-btn" onclick="app.register()">Create Account</button>
+      <p style="text-align:center;margin-top:11px;font-size:12px;color:var(--g400)">Already registered? <span style="color:var(--b600);font-weight:700;cursor:pointer" onclick="app.switchTab('login')">Sign In</span> &nbsp;·&nbsp; <span style="color:var(--b600);font-weight:700;cursor:pointer" onclick="app.go('land')">← Back</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     APP WRAP
+══════════════════════════════════════ -->
+<div id="app-wrap" style="display:none">
+
+  <!-- HOME -->
+  <div id="pg-home" class="page app-page">
+    <div class="topbar">
+      <div class="tb-l"><span class="tb-ey">Dashboard</span><span class="tb-ti" id="h-greet">Hi, User 👋</span></div>
+      <div style="display:flex;gap:6px">
+        <button class="ic-btn" onclick="app.go('history')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></button>
+        <button class="ic-btn" onclick="app.go('helpbook')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
+      </div>
+    </div>
+    <div class="ticker"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--b500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="ticker-txt" id="ann-txt">Welcome to Earnix!</span></div>
+    <div class="bal-card">
+      <div class="bal-lbl">Total Balance</div>
+      <div class="bal-amt" id="h-bal">₦0.00 <span class="lvl-badge" id="h-lvl">Free</span></div>
+      <div class="bal-acts">
+        <button class="bal-btn rc" onclick="app.go('recharge')">+ Recharge</button>
+        <button class="bal-btn wd" onclick="app.go('withdraw')">Withdraw</button>
+      </div>
+    </div>
+    <div style="padding:12px 12px 0"><div class="sec-ti" style="margin-bottom:8px">Quick Access</div></div>
+    <div class="qgrid">
+      <div class="qi" onclick="app.go('team')"><div class="qi-ic" style="background:#EFF6FF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="qi-lbl">Team</span></div>
+      <div class="qi" onclick="app.go('wealth')"><div class="qi-ic" style="background:#F0FDF4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="qi-lbl">Wealth</span></div>
+      <div class="qi" onclick="app.go('lucky')"><div class="qi-ic" style="background:#FFF7ED"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div><span class="qi-lbl">Lucky</span></div>
+      <div class="qi" onclick="app.go('invite')"><div class="qi-ic" style="background:#FFF1F2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></div><span class="qi-lbl">Invite</span></div>
+    </div>
+    <div class="sec"><div class="sec-hdr"><span class="sec-ti">Live Tasks</span><span class="sec-lnk" onclick="app.go('task')">View All →</span></div><div id="home-tasks"><div class="empty"><p>Loading tasks…</p></div></div></div>
+  </div>
+
+  <!-- TASKS -->
+  <div id="pg-task" class="page app-page">
+    <div class="topbar"><div class="tb-l"><span class="tb-ey">Task Center</span><span class="tb-ti">Earn Rewards</span></div><div style="background:var(--b50);border-radius:9px;padding:5px 10px;font-size:12px;font-weight:700;color:var(--b600)" id="task-prog">0/0</div></div>
+    <div class="ibox" style="margin-top:12px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--b500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Complete tasks daily. Count resets at midnight.</p></div>
+    <div class="sec" style="padding-top:0"><div id="task-list"><div class="empty"><p>Loading…</p></div></div></div>
+  </div>
+
+  <!-- VIP -->
+  <div id="pg-profit" class="page app-page">
+    <div class="topbar"><div class="tb-l"><span class="tb-ey">Membership</span><span class="tb-ti">VIP Levels</span></div></div>
+    <div class="sec" style="padding-top:12px"><div id="vip-list"></div></div>
+  </div>
+
+  <!-- TEAM -->
+  <div id="pg-team" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">My Team</span></div>
+    <div class="ref-card">
+      <div style="font-size:12px;font-weight:600;opacity:.7;margin-bottom:2px">Your Referral Code</div>
+      <div class="ref-code" id="ref-code">------</div>
+      <div style="font-size:11px;opacity:.6;margin-bottom:10px" id="team-pct-msg">Share to earn 5% on every deposit</div>
+      <button class="ref-copy" onclick="app.copyRef()">📋 Copy Code</button>
+    </div>
+    <div class="team-stats">
+      <div class="tstat"><div class="tstat-v" id="team-total">0</div><div class="tstat-l">Total</div></div>
+      <div class="tstat"><div class="tstat-v" id="team-active">0</div><div class="tstat-l">Active</div></div>
+      <div class="tstat"><div class="tstat-v" id="team-earn" style="color:var(--grn)">₦0</div><div class="tstat-l">Earned</div></div>
+    </div>
+    <div class="sec"><div class="sec-ti" style="margin-bottom:10px">Members</div><div id="team-list"><div class="empty"><p>No members yet — share your code!</p></div></div></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div id="pg-mine" class="page app-page">
+    <div class="prof-hdr">
+      <div class="prof-av"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="prof-name" id="mine-name">Username</div>
+      <div class="prof-lvl" id="mine-level">Level 0 · Free</div>
+    </div>
+    <div class="prof-card">
+      <div class="prof-stats">
+        <div class="pstat"><div class="pstat-v" id="mine-bal">₦0</div><div class="pstat-l">Balance</div></div>
+        <div class="pstat"><div class="pstat-v" id="mine-tasks">0</div><div class="pstat-l">Tasks</div></div>
+        <div class="pstat"><div class="pstat-v" id="mine-refs">0</div><div class="pstat-l">Referrals</div></div>
+      </div>
+    </div>
+    <div class="menu-list" style="padding-top:2px">
+      <div class="mi" onclick="app.go('recharge')"><div class="mi-ic" style="background:#EFF6FF"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><span class="mi-lbl">Recharge Account</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="mi" onclick="app.go('withdraw')"><div class="mi-ic" style="background:#F0FDF4"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><span class="mi-lbl">Withdraw Funds</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="mi" onclick="app.go('history')"><div class="mi-ic" style="background:#FFFBEB"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="mi-lbl">Transaction History</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="mi" onclick="app.go('invite')"><div class="mi-ic" style="background:#FFF1F2"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="mi-lbl">My Team & Referrals</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="mi" onclick="app.go('helpbook')"><div class="mi-ic" style="background:#F5F3FF"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><span class="mi-lbl">Help & FAQ</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="mi" onclick="app.go('about')"><div class="mi-ic" style="background:#EFF6FF"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><span class="mi-lbl">About Earnix</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--g300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div style="padding:9px 12px 0">
+      <button onclick="app.logout()" style="width:100%;padding:13px;background:#FFF1F2;color:#E11D48;border:none;border-radius:13px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out
+      </button>
+    </div>
+    <div style="height:16px"></div>
+  </div>
+
+  <!-- RECHARGE -->
+  <div id="pg-recharge" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Recharge Account</span></div>
+    <div class="amt-card">
+      <div class="amt-lbl">Enter Amount</div>
+      <div class="amt-row"><span class="amt-cur">₦</span><input type="number" id="rc-amt" class="amt-inp" placeholder="0" min="0"></div>
+      <div class="shortcuts">
+        <button class="sc" onclick="app.setAmt('rc-amt',5000)">₦5,000</button>
+        <button class="sc" onclick="app.setAmt('rc-amt',10000)">₦10,000</button>
+        <button class="sc" onclick="app.setAmt('rc-amt',50000)">₦50,000</button>
+        <button class="sc" onclick="app.setAmt('rc-amt',100000)">₦100k</button>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-ti" style="margin-bottom:8px">Bank Details</div>
+      <div style="background:#fff;border-radius:16px;padding:14px">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--b50);border-radius:11px;border:2px solid var(--b200);margin-bottom:11px">
+          <div style="width:38px;height:38px;background:var(--b600);border-radius:10px;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+          <div><div style="font-size:13px;font-weight:700">Bank Transfer</div><div style="font-size:11px;color:var(--g500)">Transfer to the account below</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:12px;color:var(--g500)">Bank</span><span style="font-size:12px;font-weight:700" id="rc-bank">—</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="font-size:12px;color:var(--g500)">Account No.</span><span style="font-size:12px;font-weight:700" id="rc-acct">—</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--g500)">Account Name</span><span style="font-size:12px;font-weight:700" id="rc-acct-name">—</span></div>
+      </div>
+    </div>
+    <div class="ibox"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--b500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p id="rc-min-msg">Minimum recharge: ₦1,000. Credited after admin confirmation.</p></div>
+    <div class="sub-area"><button class="sub-btn" id="rc-btn" onclick="app.submitRecharge()">I've Made the Transfer ✓</button></div>
+  </div>
+
+  <!-- WITHDRAW -->
+  <div id="pg-withdraw" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Withdraw Funds</span></div>
+    <div style="padding:12px 12px 0"><div style="background:#fff;border-radius:14px;padding:12px 15px;display:flex;justify-content:space-between;align-items:center"><div style="font-size:12px;color:var(--g500);font-weight:600">Available Balance</div><div style="font-size:18px;font-weight:800;color:var(--b700)" id="wd-bal">₦0.00</div></div></div>
+    <div class="amt-card" style="margin-top:9px">
+      <div class="amt-lbl">Withdrawal Amount</div>
+      <div class="amt-row"><span class="amt-cur">₦</span><input type="number" id="wd-amt" class="amt-inp" placeholder="0" min="0"></div>
+      <div class="shortcuts">
+        <button class="sc" onclick="app.setAmt('wd-amt',5000)">₦5,000</button>
+        <button class="sc" onclick="app.setAmt('wd-amt',10000)">₦10,000</button>
+        <button class="sc" onclick="app.setAmt('wd-amt',50000)">₦50,000</button>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-ti" style="margin-bottom:8px">Your Bank Account</div>
+      <div style="background:#fff;border-radius:16px;padding:14px">
+        <div class="fg" style="margin-bottom:10px"><label class="fl">Bank Name</label><input type="text" id="wd-bank" class="fi" placeholder="e.g. First Bank"></div>
+        <div class="fg" style="margin-bottom:10px"><label class="fl">Account Number</label><input type="tel" id="wd-acct" class="fi" placeholder="10-digit number" maxlength="10"></div>
+        <div class="fg" style="margin-bottom:0"><label class="fl">Account Name</label><input type="text" id="wd-name" class="fi" placeholder="Your full name"></div>
+      </div>
+    </div>
+    <div class="ibox"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--b500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p id="wd-min-msg">Minimum: ₦1,000. Processing 1–3 business days.</p></div>
+    <div class="sub-area"><button class="sub-btn" id="wd-btn" onclick="app.submitWithdraw()">Request Withdrawal</button></div>
+  </div>
+
+  <!-- INVITE -->
+  <div id="pg-invite" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Invite Friends</span></div>
+    <div style="padding:12px">
+      <div style="background:linear-gradient(135deg,var(--b600),var(--b800));border-radius:20px;padding:22px;color:#fff;text-align:center;margin-bottom:12px">
+        <div style="font-size:30px;margin-bottom:8px">🎁</div>
+        <div style="font-size:16px;font-weight:800;margin-bottom:4px">Earn Per Referral</div>
+        <div style="font-size:12px;opacity:.7;margin-bottom:14px" id="inv-pct-msg">Get 5% on every friend's deposit</div>
+        <div style="background:rgba(255,255,255,.14);border-radius:11px;padding:11px;margin-bottom:12px"><div style="font-size:11px;opacity:.6;margin-bottom:2px">Your Referral Code</div><div style="font-size:19px;font-weight:800;letter-spacing:4px" id="inv-code">------</div></div>
+        <div style="font-size:11px;opacity:.65;margin-bottom:10px">Your Referral Link:</div>
+        <div style="background:rgba(255,255,255,.12);border-radius:9px;padding:9px 12px;font-size:11px;font-weight:600;margin-bottom:12px;word-break:break-all;text-align:left" id="inv-link">Loading link…</div>
+        <button onclick="app.shareInvite()" style="background:#fff;color:var(--b700);border:none;border-radius:10px;padding:10px 22px;font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer">📤 Share Invite Link</button>
+      </div>
+      <div style="background:#fff;border-radius:16px;padding:14px">
+        <div class="sec-ti" style="margin-bottom:12px">How It Works</div>
+        <div class="invite-step"><div class="invite-step-num" style="background:var(--b600);color:#fff">1</div><div><div style="font-size:13px;font-weight:700">Share your link or code</div><div style="font-size:12px;color:var(--g500)">Anyone who clicks your link gets your code auto-filled</div></div></div>
+        <div class="invite-step"><div class="invite-step-num" style="background:var(--b600);color:#fff">2</div><div><div style="font-size:13px;font-weight:700">They register & deposit</div><div style="font-size:12px;color:var(--g500)">Friend joins using your referral code</div></div></div>
+        <div class="invite-step" style="margin-bottom:0"><div class="invite-step-num" style="background:var(--grn);color:#fff">✓</div><div><div style="font-size:13px;font-weight:700">You earn commission instantly</div><div style="font-size:12px;color:var(--g500)" id="inv-how-msg">5% credited to your balance on every deposit</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="pg-history" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Transaction History</span></div>
+    <div class="htabs">
+      <button class="htab on" onclick="app.histTab('all')">All</button>
+      <button class="htab" onclick="app.histTab('deposit')">Deposits</button>
+      <button class="htab" onclick="app.histTab('withdrawal')">Withdrawals</button>
+    </div>
+    <div class="sec" style="padding-top:10px"><div id="hist-list"><div class="empty"><p>Loading…</p></div></div></div>
+  </div>
+
+  <!-- WEALTH -->
+  <div id="pg-wealth" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Wealth Fund</span></div>
+    <div class="thanks-wrap"><div class="thanks-ic" style="background:#FFFBEB"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><h2 class="thanks-ti">Wealth Fund</h2><p class="thanks-sub">Passive investment plans coming soon. Earn up to 8% daily!</p><button class="thanks-bk" onclick="app.back()">← Go Back</button></div>
+  </div>
+
+  <!-- LUCKY -->
+  <div id="pg-lucky" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Lucky Wheel</span></div>
+    <div class="thanks-wrap"><div class="thanks-ic" style="background:#FFF7ED"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div><h2 class="thanks-ti">Lucky Wheel 🎡</h2><p class="thanks-sub">Spin to win cash prizes! Launching very soon.</p><button class="thanks-bk" onclick="app.back()">← Go Back</button></div>
+  </div>
+
+  <!-- HELP -->
+  <div id="pg-helpbook" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">Help & FAQ</span></div>
+    <div style="padding:12px">
+      <div style="background:linear-gradient(135deg,var(--b600),var(--b800));border-radius:16px;padding:14px;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:12px">
+        <div><div style="font-size:13px;font-weight:700;margin-bottom:2px">Need Support?</div><div style="font-size:12px;opacity:.7" id="help-contact-msg">Reach us via email</div></div>
+        <a id="help-link" href="mailto:support@earnix.app" style="background:rgba(255,255,255,.18);color:#fff;text-decoration:none;border-radius:9px;padding:8px 13px;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0">Contact Us</a>
+      </div>
+      <div id="faq-list"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="pg-about" class="page app-page">
+    <div class="phdr"><button class="bk" onclick="app.back()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><span class="phdr-ti">About Earnix</span></div>
+    <div style="padding:12px">
+      <div style="background:linear-gradient(135deg,var(--b600),var(--b800));border-radius:20px;padding:24px;color:#fff;text-align:center;margin-bottom:12px">
+        <div style="width:52px;height:52px;background:rgba(255,255,255,.14);border-radius:15px;margin:0 auto 11px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.18)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:3px" id="about-name">earnix</div>
+        <div style="font-size:12px;opacity:.6">Version 2.0.0</div>
+      </div>
+      <div style="background:#fff;border-radius:16px;padding:14px;margin-bottom:10px"><div class="sec-ti" style="margin-bottom:8px">Our Mission</div><p style="font-size:13px;color:var(--g600);line-height:1.75">Earnix empowers Nigerians to generate real income through simple online tasks. We believe everyone deserves financial freedom.</p></div>
+      <div style="background:#fff;border-radius:16px;padding:14px"><div class="sec-ti" style="margin-bottom:10px">Platform Stats</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px"><div style="background:var(--g50);border-radius:11px;padding:11px;text-align:center"><div style="font-size:17px;font-weight:800;color:var(--b700)">10K+</div><div style="font-size:10px;color:var(--g500);font-weight:600;margin-top:2px">Active Users</div></div><div style="background:var(--g50);border-radius:11px;padding:11px;text-align:center"><div style="font-size:17px;font-weight:800;color:var(--grn)">₦50M+</div><div style="font-size:10px;color:var(--g500);font-weight:600;margin-top:2px">Paid Out</div></div><div style="background:var(--g50);border-radius:11px;padding:11px;text-align:center"><div style="font-size:17px;font-weight:800;color:var(--b700)">500+</div><div style="font-size:10px;color:var(--g500);font-weight:600;margin-top:2px">Daily Tasks</div></div><div style="background:var(--g50);border-radius:11px;padding:11px;text-align:center"><div style="font-size:17px;font-weight:800;color:var(--amb)">4.9★</div><div style="font-size:10px;color:var(--g500);font-weight:600;margin-top:2px">User Rating</div></div></div></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bnav" id="bnav">
+    <button class="ni on" data-p="home" onclick="app.go('home')"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="ni-lbl">Home</span></button>
+    <button class="ni" data-p="task" onclick="app.go('task')"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span class="ni-lbl">Tasks</span></button>
+    <button class="ni" data-p="profit" onclick="app.go('profit')"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="ni-lbl">VIP</span></button>
+    <button class="ni" data-p="team" onclick="app.go('team')"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="ni-lbl">Team</span></button>
+    <button class="ni" data-p="mine" onclick="app.go('mine')"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="ni-lbl">Mine</span></button>
+  </nav>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   CONFIG — paste your GAS URL here
+══════════════════════════════════════ */
+const API_URL = "https://script.google.com/macros/s/AKfycbxGuMOPu4v4kziLXG6cJTlFIq703UAJFCakiFBLKZD6aL-8qDJFpo84-8yQbS0PTeue/exec";
+
+const app = {
+  db:       null,
+  user:     null,
+  prevPage: 'land',
+
+  /* ── INIT ── */
+  async init() {
+    // Check URL for referral code: earnix.html?ref=CODE
+    const urlRef = new URLSearchParams(window.location.search).get('ref');
+    if (urlRef) {
+      sessionStorage.setItem('earnix_ref', urlRef.toUpperCase());
+      document.getElementById('r-ref').value = urlRef.toUpperCase();
+      document.getElementById('ref-banner').classList.add('show');
+      document.getElementById('ref-banner-code').textContent = urlRef.toUpperCase();
+    }
+
+    await this.syncDb();
+
+    if (!this.db) {
+      this.hideLoader();
+      this.toast('⚠ Could not reach server. Check your API URL.','e');
+      return;
+    }
+    if (this.db.error === 'maintenance') {
+      document.getElementById('maint-msg').textContent = this.db.message || 'Under maintenance.';
+      document.getElementById('maint-screen').style.display = 'flex';
+      this.hideLoader();
+      return;
+    }
+
+    this.applySettings();
+    this.renderLanding();
+
+    const raw = localStorage.getItem('earnix_user');
+    if (raw) {
+      try {
+        const saved = JSON.parse(raw);
+        const fresh = this.db.users?.find(u => u.uid === saved.uid);
+        if (fresh && !fresh.suspended) {
+          this.user = fresh;
+          this.hideLoader();
+          this.showApp();
+          return;
+        } else { localStorage.removeItem('earnix_user'); }
+      } catch { localStorage.removeItem('earnix_user'); }
+    }
+
+    this.hideLoader();
+    // Stay on landing page
+  },
+
+  async syncDb() {
+    try {
+      const r = await fetch(API_URL + '?role=user', { signal: AbortSignal.timeout(9000) });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      this.db = await r.json();
+    } catch { this.db = null; }
+  },
+
+  applySettings() {
+    const s = this.db?.settings || {};
+    const name = s.site_name || 'Earnix';
+    const tagline = s.tagline || 'Earn Daily. Earn Smart.';
+    const pct = s.referral_bonus_pct || 5;
+
+    // SEO dynamic update
+    document.title = name + ' — ' + tagline;
+    document.querySelector('meta[name="description"]')?.setAttribute('content',
+      name + ' is Nigeria\'s #1 online earning platform. Complete simple social media tasks daily and earn real money. Join thousands earning up to ₦40,000 per day.');
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', name + ' — ' + tagline);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', s.site_url || window.location.href);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', s.site_url || window.location.href);
+
+    // UI text
+    ['land-site-name','auth-site-name','about-name','foot-site-name'].forEach(id => this.setText(id, name.toLowerCase()));
+    this.setText('auth-tagline', tagline);
+    this.setText('foot-tagline', tagline + '\nNigeria\'s trusted online earning platform.');
+
+    // Bank
+    this.setText('rc-bank', s.bank_name || '—');
+    this.setText('rc-acct', s.bank_account || '—');
+    this.setText('rc-acct-name', s.bank_account_name || '—');
+
+    // Limits
+    this.setText('rc-min-msg', 'Minimum recharge: ₦' + this.fmt(s.min_deposit||1000) + '. Credited after admin confirmation.');
+    this.setText('wd-min-msg', 'Minimum: ₦' + this.fmt(s.min_withdraw||1000) + '. Processing 1–3 business days.');
+
+    // Referral %
+    this.setText('inv-pct-msg', 'Get ' + pct + '% on every friend\'s deposit');
+    this.setText('inv-how-msg', pct + '% credited to your balance on every deposit');
+    this.setText('team-pct-msg', 'Share to earn ' + pct + '% on every deposit');
+    this.setText('land-ref-pct', String(pct));
+
+    // Support
+    if (s.support_whatsapp) {
+      document.getElementById('help-link').href = 'https://wa.me/' + s.support_whatsapp.replace(/\D/g,'');
+      this.setText('help-contact-msg', 'Chat on WhatsApp');
+    } else if (s.support_email) {
+      document.getElementById('help-link').href = 'mailto:' + s.support_email;
+      this.setText('help-contact-msg', s.support_email);
+    }
+
+    // Footer email
+    if (s.support_email) {
+      const el = document.getElementById('foot-email');
+      if (el) { el.textContent = 'Contact'; el.onclick = () => window.open('mailto:'+s.support_email); }
+    }
+  },
+
+  renderLanding() {
+    const s = this.db?.settings || {};
+    const pct = s.referral_bonus_pct || 5;
+
+    // VIP cards from live data
+    const levels = this.db?.levels || [];
+    if (levels.length) {
+      const showcase = levels.filter(l => l.level > 0).slice(0,2);
+      const colors = ['linear-gradient(135deg,var(--b600),var(--b800))','linear-gradient(135deg,#047857,#065F46)'];
+      document.getElementById('land-vip-cards').innerHTML = showcase.map((l,i) => `
+        <div class="vip-preview" style="background:${colors[i]||colors[0]};margin-bottom:9px">
+          <div class="vip-prev-name">${this.esc(l.name)} — Level ${l.level}</div>
+          <div class="vip-prev-dep">Min Deposit: ₦${this.fmt(l.deposit)}</div>
+          <div class="vip-prev-stats">
+            <div class="vp-stat"><div class="vp-sv">₦${this.fmt(l.per_order)}</div><div class="vp-sl">Per Task</div></div>
+            <div class="vp-stat"><div class="vp-sv">${l.daily_tasks}</div><div class="vp-sl">Tasks/Day</div></div>
+            <div class="vp-stat"><div class="vp-sv">₦${this.fmt(l.per_order*l.daily_tasks)}</div><div class="vp-sl">Daily</div></div>
+          </div>
+        </div>`).join('');
+    }
+
+    // FAQ
+    const faqs = [
+      {q:"Is Earnix legitimate?", a:"Yes. Earnix is a real earning platform that has paid out over ₦50M to members. All withdrawals are processed to Nigerian bank accounts."},
+      {q:"Is a referral code required?", a:"Yes. You must have a valid referral code from an existing member to register. This ensures a trusted community."},
+      {q:"How do I get a referral code?", a:"Ask anyone who is already a member of Earnix. You can also share this page and they will see how to get a code."},
+      {q:"How much can I earn per day?", a:"Depending on your VIP level, you can earn from ₦2,400/day (Bronze) up to ₦360,000/day (Elite) by completing daily tasks."},
+      {q:"How do I withdraw my earnings?", a:"Go to Withdraw, enter your amount and bank details. Withdrawals are processed within 1–3 business days."},
+      {q:"What happens if I refer someone?", a:"You earn " + pct + "% commission automatically when anyone you referred makes a deposit."}
+    ];
+    document.getElementById('land-faq').innerHTML = faqs.map(f => `
+      <div class="faq-item" onclick="this.querySelector('.faq-a').classList.toggle('op')">
+        <div class="faq-q"><span class="faq-qt">${f.q}</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--b500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a"><div class="faq-at">${f.a}</div></div>
+      </div>`).join('');
+  },
+
+  hideLoader() { const e=document.getElementById('loader'); e.classList.add('off'); setTimeout(()=>e.style.display='none',500); },
+
+  showAuth(tab='login') {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('pg-auth').classList.add('active');
+    this.switchTab(tab);
+    // Restore ref from session
+    const ref = sessionStorage.getItem('earnix_ref');
+    if (ref) document.getElementById('r-ref').value = ref;
+    window.scrollTo(0,0);
+  },
+
+  showApp() {
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('app-wrap').style.display = 'block';
+    this.renderUI();
+    this.go('home');
+  },
+
+  /* ── AUTH ── */
+  switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('on',(i===0&&tab==='login')||(i===1&&tab==='register')));
+    document.getElementById('fm-login').classList.toggle('on', tab==='login');
+    document.getElementById('fm-register').classList.toggle('on', tab==='register');
+    ['login-err','reg-err'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  },
+
+  async login() {
+    const phone = document.getElementById('l-phone').value.trim();
+    const pass  = document.getElementById('l-pass').value.trim();
+    const errEl = document.getElementById('login-err');
+    errEl.classList.remove('on');
+    if (!phone||!pass){ errEl.textContent='Please fill in all fields'; errEl.classList.add('on'); return; }
+    const btn=document.getElementById('login-btn'); btn.disabled=true; btn.textContent='Signing in…';
+    try {
+      const r = await fetch(`${API_URL}?action=login&phone=${encodeURIComponent(phone)}&password=${encodeURIComponent(pass)}`);
+      const d = await r.json();
+      if (d.success) {
+        this.user = d.user;
+        await this.syncDb(); this.applySettings();
+        localStorage.setItem('earnix_user', JSON.stringify(this.user));
+        this.showApp();
+        this.toast('Welcome back, '+this.user.username+'! 👋','s');
+      } else { errEl.textContent=d.error||'Login failed'; errEl.classList.add('on'); }
+    } catch { errEl.textContent='Connection error. Please try again.'; errEl.classList.add('on'); }
+    btn.disabled=false; btn.textContent='Sign In';
+  },
+
+  async register() {
+    const username = document.getElementById('r-user').value.trim();
+    const phone    = document.getElementById('r-phone').value.trim();
+    const pass     = document.getElementById('r-pass').value.trim();
+    const ref      = document.getElementById('r-ref').value.trim().toUpperCase();
+    const errEl    = document.getElementById('reg-err');
+    errEl.classList.remove('on');
+    if (!username||!phone||!pass){ errEl.textContent='Please fill in all fields'; errEl.classList.add('on'); return; }
+    if (!ref){ errEl.textContent='Referral code is required to join Earnix'; errEl.classList.add('on'); document.getElementById('r-ref').classList.add('err'); return; }
+    if (pass.length<6){ errEl.textContent='Password must be at least 6 characters'; errEl.classList.add('on'); return; }
+    if (phone.replace(/\D/g,'').length<10){ errEl.textContent='Enter a valid phone number'; errEl.classList.add('on'); return; }
+    const btn=document.getElementById('reg-btn'); btn.disabled=true; btn.textContent='Creating account…';
+    try {
+      const url=`${API_URL}?action=register&username=${encodeURIComponent(username)}&phone=${encodeURIComponent(phone)}&password=${encodeURIComponent(pass)}&referral_code=${encodeURIComponent(ref)}`;
+      const r=await fetch(url);
+      const d=await r.json();
+      if (d.success) {
+        this.user=d.user;
+        await this.syncDb(); this.applySettings();
+        localStorage.setItem('earnix_user', JSON.stringify(this.user));
+        sessionStorage.removeItem('earnix_ref');
+        this.showApp();
+        this.toast('Welcome to Earnix! 🎉','s');
+      } else { errEl.textContent=d.error||'Registration failed'; errEl.classList.add('on'); }
+    } catch { errEl.textContent='Connection error. Please try again.'; errEl.classList.add('on'); }
+    btn.disabled=false; btn.textContent='Create Account';
+  },
+
+  logout() {
+    if (!confirm('Sign out?')) return;
+    localStorage.removeItem('earnix_user');
+    this.user=null;
+    document.getElementById('app-wrap').style.display='none';
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('pg-land').classList.add('active');
+    window.scrollTo(0,0);
+  },
+
+  /* ── NAVIGATION ── */
+  go(pid) {
+    if (pid==='land') {
+      document.getElementById('app-wrap').style.display='none';
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      document.getElementById('pg-land').classList.add('active');
+      window.scrollTo(0,0); return;
+    }
+    const cur = document.querySelector('#app-wrap .page.active');
+    if (cur) this.prevPage = cur.id.replace('pg-','');
+    document.querySelectorAll('#app-wrap .page').forEach(p=>p.classList.remove('active'));
+    const target = document.getElementById('pg-'+pid);
+    if (!target) return;
+    target.classList.add('active');
+    document.querySelectorAll('.ni').forEach(b=>b.classList.toggle('on',b.dataset.p===pid));
+    const sub=['recharge','withdraw','team','wealth','lucky','invite','helpbook','about','history'];
+    document.getElementById('bnav').style.display = sub.includes(pid) ? 'none' : 'flex';
+    if (pid==='task')     this.renderTasks();
+    if (pid==='profit')   this.renderVIP();
+    if (pid==='team')     this.renderTeam();
+    if (pid==='mine')     this.renderMine();
+    if (pid==='withdraw') this.setText('wd-bal','₦'+this.fmt(this.user?.balance||0));
+    if (pid==='invite')   this.renderInvite();
+    if (pid==='helpbook') this.renderFAQ();
+    if (pid==='history')  this.renderHistory('all');
+    if (pid==='about')    this.setText('about-name',(this.db?.settings?.site_name||'earnix').toLowerCase());
+    window.scrollTo(0,0);
+  },
+
+  back() { this.go(this.prevPage||'home'); },
+
+  /* ── RENDER UI ── */
+  renderUI() {
+    if (!this.user||!this.db) return;
+    const fresh=this.db.users?.find(u=>u.uid===this.user.uid);
+    if (fresh) this.user=fresh;
+    const lvl=this.db.levels?.find(l=>l.level===(this.user.level||0))||{name:'Free'};
+    this.setText('h-greet','Hi, '+this.user.username+' 👋');
+    this.setText('h-bal','₦'+this.fmt(this.user.balance||0));
+    this.setText('h-lvl',lvl.name);
+    this.setText('ref-code',this.user.referral_code||'------');
+    const ann=this.db.announcements?.find(a=>a.active);
+    if (ann) this.setText('ann-txt',ann.message);
+    this.renderHomeTasks();
+  },
+
+  renderHomeTasks() {
+    const el=document.getElementById('home-tasks');
+    if (!el||!this.db?.tasks) return;
+    const today=new Date().toISOString().slice(0,10);
+    const uLvl=this.user?.level||0;
+    const done=this.user?.last_task_date===today?(this.user.tasks_completed_today||0):0;
+    const max=this.db.levels?.find(l=>l.level===uLvl)?.daily_tasks||0;
+    const tasks=this.db.tasks.filter(t=>t.active&&t.level_required<=uLvl).slice(0,3);
+    if (!tasks.length){el.innerHTML='<div class="empty"><p>Upgrade VIP to unlock tasks</p></div>';return;}
+    el.innerHTML=tasks.map(t=>this.tcHTML(t,done>=max,false)).join('');
+  },
+
+  renderTasks() {
+    const el=document.getElementById('task-list');
+    if (!el||!this.db?.tasks||!this.user) return;
+    const today=new Date().toISOString().slice(0,10);
+    const uLvl=this.user.level||0;
+    const done=this.user.last_task_date===today?(this.user.tasks_completed_today||0):0;
+    const max=this.db.levels?.find(l=>l.level===uLvl)?.daily_tasks||0;
+    this.setText('task-prog',done+'/'+max+' today');
+    const tasks=this.db.tasks.filter(t=>t.active);
+    if (!tasks.length){el.innerHTML='<div class="empty"><p>No tasks available</p></div>';return;}
+    el.innerHTML=tasks.map(t=>{const locked=t.level_required>uLvl;return this.tcHTML(t,!locked&&done>=max,locked);}).join('');
+  },
+
+  tcHTML(t,done,locked) {
+    return `<div class="tc" style="${locked?'opacity:.5':''}">
+      <div class="tc-ic" style="background:${this.platBg(t.platform)}">${this.platEmoji(t.platform)}</div>
+      <div class="tc-info">
+        <div class="tc-name">${this.esc(t.title)}</div>
+        <div class="tc-rw">+₦${this.fmt(t.reward)}</div>
+        ${locked?`<div class="tc-sub">VIP ${t.level_required} required</div>`:''}
+      </div>
+      <button class="tc-btn ${locked?'lkd':done?'done':''}"
+        ${locked||done?'disabled':''}
+        ${!locked&&!done?`onclick="app.doTask('${t.id}')"`:''}>
+        ${locked?'🔒':done?'Done':'Start'}
+      </button>
+    </div>`;
+  },
+
+  renderVIP() {
+    const el=document.getElementById('vip-list');
+    if (!el||!this.db?.levels) return;
+    const uLvl=this.user?.level||0;
+    el.innerHTML=this.db.levels.map(l=>{
+      const isCur=l.level===uLvl;
+      const daily=(l.per_order||0)*(l.daily_tasks||0);
+      return `<div class="vc ${isCur?'cur':''}">
+        <div class="vc-hdr">
+          <div><div class="vc-name">${this.esc(l.name)}</div><div class="vc-sub">Level ${l.level}</div></div>
+          <span class="vc-badge ${isCur?'cur':''}">${isCur?'✓ Current':'₦'+this.fmt(l.deposit)}</span>
+        </div>
+        <div class="vc-stats">
+          <div><div class="vc-sl">Per Task</div><div class="vc-sv">₦${this.fmt(l.per_order)}</div></div>
+          <div><div class="vc-sl">Daily Tasks</div><div class="vc-sv">${l.daily_tasks}</div></div>
+          <div><div class="vc-sl">Daily Income</div><div class="vc-sv" style="color:var(--grn)">₦${this.fmt(daily)}</div></div>
+          <div><div class="vc-sl">Min Deposit</div><div class="vc-sv">₦${this.fmt(l.deposit)}</div></div>
+        </div>
+        <button class="vc-btn ${isCur?'cu':'up'}" ${isCur?'disabled':''} onclick="${isCur?'':l.level===0?'':'app.go(\'recharge\')'}">${isCur?'✓ Current Level':l.level===0?'Free (Default)':'Recharge to Upgrade'}</button>
+      </div>`;
+    }).join('');
+  },
+
+  renderTeam() {
+    if (!this.user||!this.db) return;
+    const fresh=this.db.users?.find(u=>u.uid===this.user.uid)||this.user;
+    this.user=fresh;
+    const refs=this.db.users?.filter(u=>u.referred_by===this.user.referral_code)||[];
+    const pct=this.db.settings?.referral_bonus_pct||5;
+    const today=new Date().toISOString().slice(0,10);
+    const comm=this.db.transactions?.filter(t=>{const u=refs.find(r=>r.uid===t.user_id);return u&&t.type==='deposit'&&t.status==='approved';}).reduce((s,t)=>s+Math.floor(t.amount*pct/100),0)||0;
+    this.setText('ref-code',this.user.referral_code||'------');
+    this.setText('team-total',String(refs.length));
+    this.setText('team-active',String(refs.filter(u=>u.last_task_date===today).length));
+    this.setText('team-earn','₦'+this.fmt(comm));
+    const el=document.getElementById('team-list');
+    if (!refs.length){el.innerHTML='<div class="empty"><p>No members yet — share your code!</p></div>';return;}
+    el.innerHTML=refs.map(u=>`<div class="txi"><div class="txi-ic cr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="txi-d"><div class="txi-ti">${this.esc(u.username)}</div><div class="txi-dt">Level ${u.level||0} · ${new Date(u.registered_at).toLocaleDateString()}</div></div></div>`).join('');
+  },
+
+  renderMine() {
+    if (!this.user||!this.db) return;
+    const fresh=this.db.users?.find(u=>u.uid===this.user.uid)||this.user;
+    this.user=fresh;
+    const lvl=this.db.levels?.find(l=>l.level===(fresh.level||0))||{name:'Free'};
+    const refs=this.db.users?.filter(u=>u.referred_by===fresh.referral_code)||[];
+    this.setText('mine-name',fresh.username);
+    this.setText('mine-level','Level '+(fresh.level||0)+' · '+lvl.name);
+    this.setText('mine-bal','₦'+this.fmt(fresh.balance||0));
+    this.setText('mine-tasks',String(fresh.tasks_completed_today||0));
+    this.setText('mine-refs',String(refs.length));
+  },
+
+  renderInvite() {
+    this.setText('inv-code',this.user?.referral_code||'------');
+    const s=this.db?.settings||{};
+    const base=s.site_url||window.location.href.split('?')[0];
+    const link=base+'?ref='+(this.user?.referral_code||'');
+    this.setText('inv-link',link);
+    document.getElementById('inv-link').dataset.link=link;
+  },
+
+  renderHistory(filter) {
+    document.querySelectorAll('.htab').forEach(b=>b.classList.toggle('on',(filter==='all'&&b.textContent==='All')||(b.textContent.toLowerCase()===filter)));
+    const el=document.getElementById('hist-list');
+    if (!this.db||!this.user){el.innerHTML='<div class="empty"><p>Loading…</p></div>';return;}
+    let txns=(this.db.transactions||[]).filter(t=>t.user_id===this.user.uid);
+    if (filter!=='all') txns=txns.filter(t=>t.type===filter);
+    txns.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+    if (!txns.length){el.innerHTML='<div class="empty"><p>No transactions found</p></div>';return;}
+    el.innerHTML=txns.map(t=>{
+      const isD=t.type==='deposit';
+      return `<div class="txi">
+        <div class="txi-ic ${isD?'cr':'db'}">${isD?'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>'}</div>
+        <div class="txi-d">
+          <div class="txi-ti">${isD?'Deposit':'Withdrawal'} <span class="badge ${t.status==='pending'?'p':t.status==='approved'?'a':'r'}">${t.status}</span></div>
+          <div class="txi-dt">${new Date(t.timestamp).toLocaleString()}</div>
+          ${t.reject_reason?`<div style="font-size:11px;color:var(--red);margin-top:2px">Reason: ${this.esc(t.reject_reason)}</div>`:''}
+        </div>
+        <div class="txi-am ${isD?'cr':'db'}">${isD?'+':'-'}₦${this.fmt(t.amount)}</div>
+      </div>`;
+    }).join('');
+  },
+
+  histTab(f){ this.renderHistory(f); },
+
+  renderFAQ() {
+    const min=this.db?.settings?.min_withdraw||1000;
+    const pct=this.db?.settings?.referral_bonus_pct||5;
+    const faqs=[
+      {q:"How do I earn on Earnix?",           a:"Complete social media tasks — follow, watch, or like — to earn real rewards credited instantly."},
+      {q:"Is a referral code required?",        a:"Yes. A valid referral code from an existing member is required to create any account."},
+      {q:"How long does withdrawal take?",      a:"Withdrawals are processed within 1–3 business days after admin review."},
+      {q:"What is the minimum withdrawal?",     a:"The minimum withdrawal amount is ₦"+this.fmt(min)+"."},
+      {q:"How do referral commissions work?",   a:"You earn "+pct+"% commission automatically when someone you referred makes a deposit."},
+      {q:"Why can't I see any tasks?",          a:"You need to upgrade to at least VIP 1 (Bronze) to access tasks. Recharge your account to upgrade."},
+      {q:"Is my money secure?",                 a:"Yes. All withdrawals are processed manually by our verified admin team."},
+      {q:"How do I upgrade my VIP level?",      a:"Recharge your account. Your level upgrades automatically once admin approves your deposit."}
+    ];
+    document.getElementById('faq-list').innerHTML=faqs.map(f=>`
+      <div class="faq-item2" onclick="this.querySelector('.faq-a2').classList.toggle('op')">
+        <div class="faq-q2"><span class="faq-qt2">${f.q}</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--b500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a2"><div class="faq-at2">${f.a}</div></div>
+      </div>`).join('');
+  },
+
+  /* ── TASKS ── */
+  async doTask(taskId) {
+    if (!this.user||!this.db) return;
+    const task=this.db.tasks?.find(t=>t.id===taskId);
+    if (!task) return;
+    const today=new Date().toISOString().slice(0,10);
+    const uLvl=this.user.level||0;
+    const max=this.db.levels?.find(l=>l.level===uLvl)?.daily_tasks||0;
+    if (max===0){this.toast('Upgrade your VIP level to do tasks!','e');setTimeout(()=>this.go('profit'),800);return;}
+    if (this.user.last_task_date===today&&(this.user.tasks_completed_today||0)>=max){this.toast('Daily task limit reached ('+max+'/day)','e');return;}
+    if (task.link) window.open(task.link,'_blank');
+
+    // FIX: Use 'text/plain' to avoid CORS preflight on GAS
+    try {
+      const r=await fetch(API_URL,{method:'POST',body:JSON.stringify({action:'completeTask',uid:this.user.uid,task_id:taskId}),headers:{'Content-Type':'text/plain'}});
+      const d=await r.json();
+      if (d.success){
+        this.user=d.user;
+        await this.syncDb();
+        const fresh=this.db.users?.find(u=>u.uid===this.user.uid);
+        if (fresh) this.user=fresh;
+        localStorage.setItem('earnix_user',JSON.stringify(this.user));
+        this.renderUI(); this.renderTasks();
+        this.toast('+₦'+this.fmt(task.reward)+' earned! 🎉','s');
+      } else { this.toast(d.error||'Task failed','e'); }
+    } catch { this.toast('Connection error. Try again.','e'); }
+  },
+
+  /* ── RECHARGE — FIX: text/plain content-type ── */
+  async submitRecharge() {
+    const amount=parseFloat(document.getElementById('rc-amt').value);
+    const min=this.db?.settings?.min_deposit||1000;
+    if (!amount||amount<min){this.toast('Minimum recharge is ₦'+this.fmt(min),'e');return;}
+    const btn=document.getElementById('rc-btn'); btn.disabled=true; btn.textContent='Submitting…';
+    try {
+      const r=await fetch(API_URL,{method:'POST',body:JSON.stringify({action:'deposit',uid:this.user.uid,amount}),headers:{'Content-Type':'text/plain'}});
+      const d=await r.json();
+      if (d.success){
+        this.toast('Recharge request submitted! Awaiting approval.','s');
+        document.getElementById('rc-amt').value='';
+        this.go('home');
+        this.renderUI();
+      } else { this.toast(d.error||'Submission failed','e'); }
+    } catch { this.toast('Connection error. Try again.','e'); }
+    btn.disabled=false; btn.textContent="I've Made the Transfer ✓";
+  },
+
+  /* ── WITHDRAW — FIX: text/plain content-type ── */
+  async submitWithdraw() {
+    const amount=parseFloat(document.getElementById('wd-amt').value);
+    const bank=document.getElementById('wd-bank').value.trim();
+    const acct=document.getElementById('wd-acct').value.trim();
+    const name=document.getElementById('wd-name').value.trim();
+    const min=this.db?.settings?.min_withdraw||1000;
+    if (!amount||amount<min){this.toast('Minimum withdrawal is ₦'+this.fmt(min),'e');return;}
+    if (!bank||!acct||!name){this.toast('Please fill in all bank details','e');return;}
+    if (amount>(this.user.balance||0)){this.toast('Insufficient balance','e');return;}
+    if (acct.replace(/\D/g,'').length!==10){this.toast('Account number must be 10 digits','e');return;}
+    const btn=document.getElementById('wd-btn'); btn.disabled=true; btn.textContent='Submitting…';
+    try {
+      const r=await fetch(API_URL,{method:'POST',body:JSON.stringify({action:'withdraw',uid:this.user.uid,amount,bank_name:bank,account_number:acct,account_name:name}),headers:{'Content-Type':'text/plain'}});
+      const d=await r.json();
+      if (d.success){
+        this.user=d.user;
+        await this.syncDb();
+        const fresh=this.db.users?.find(u=>u.uid===this.user.uid);
+        if (fresh) this.user=fresh;
+        localStorage.setItem('earnix_user',JSON.stringify(this.user));
+        this.toast('Withdrawal request submitted! 1–3 business days.','s');
+        ['wd-amt','wd-bank','wd-acct','wd-name'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+        this.go('home'); this.renderUI();
+      } else { this.toast(d.error||'Submission failed','e'); }
+    } catch { this.toast('Connection error. Try again.','e'); }
+    btn.disabled=false; btn.textContent='Request Withdrawal';
+  },
+
+  /* ── HELPERS ── */
+  setAmt(id,v){ document.getElementById(id).value=v; },
+  setText(id,t){ const e=document.getElementById(id);if(e)e.textContent=t; },
+  fmt(n){ return (parseFloat(n)||0).toLocaleString('en-NG',{minimumFractionDigits:0,maximumFractionDigits:2}); },
+  esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); },
+
+  copyRef() {
+    const code=this.user?.referral_code||'';
+    (navigator.clipboard?.writeText(code)||Promise.resolve()).then(()=>this.toast('Referral code copied! 📋','s')).catch(()=>this.toast('Code: '+code,'i'));
+  },
+
+  shareInvite() {
+    const s=this.db?.settings||{};
+    const code=this.user?.referral_code||'';
+    const base=s.site_url||window.location.href.split('?')[0];
+    const link=base+'?ref='+code;
+    const text=`Join ${s.site_name||'Earnix'} and earn real money daily! Use my referral code: ${code}\n${link}`;
+    if (navigator.share) navigator.share({title:(s.site_name||'Earnix')+' Invite',text,url:link});
+    else { navigator.clipboard?.writeText(text); this.toast('Invite link copied!','s'); }
+  },
+
+  platBg(p){ return {TikTok:'#F0FFF4',YouTube:'#FFF1F2',Instagram:'#FFF7ED',Facebook:'#EFF6FF',Twitter:'#F0F9FF'}[p]||'#F1F5F9'; },
+  platEmoji(p){ return {TikTok:'🎵',YouTube:'▶️',Instagram:'📸',Facebook:'👍',Twitter:'🐦'}[p]||'📱'; },
+
+  toast(msg,type=''){
+    const el=document.getElementById('toast');
+    el.textContent=msg; el.className='on'+(type?' '+type:'');
+    clearTimeout(this._t); this._t=setTimeout(()=>el.className='',3200);
+  }
+};
+
+app.init();
+</script>
+</body>
+</html>

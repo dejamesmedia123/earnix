@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Earnix Admin Console</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nv:#0D1B2A;--nv2:#112233;
+  --bl:#2563EB;--bl2:#1D4ED8;--blt:#EFF6FF;
+  --wh:#fff;--g50:#F8FAFC;--g100:#F1F5F9;--g200:#E2E8F0;
+  --g300:#CBD5E1;--g400:#94A3B8;--g500:#64748B;--g600:#475569;--g900:#0F172A;
+  --grn:#10B981;--grn2:#D1FAE5;--red:#EF4444;--red2:#FEE2E2;
+  --amb:#F59E0B;--amb2:#FEF3C7;--sb:240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Sora',sans-serif;background:var(--g100);color:var(--g900)}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--nv);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .4s}
+#loader.off{opacity:0;pointer-events:none}
+.ld-ic{width:66px;height:66px;background:rgba(255,255,255,.08);border-radius:22px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;border:2px solid rgba(255,255,255,.1)}
+.ld-brand{font-size:20px;font-weight:800;color:#fff;margin-bottom:5px}
+.ld-sub{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:24px}
+.ld-spin{width:26px;height:26px;border:2.5px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* TOAST */
+#toast{position:fixed;top:16px;right:16px;padding:11px 18px;border-radius:11px;font-size:13px;font-weight:700;z-index:500;transform:translateX(120%);transition:transform .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 28px rgba(0,0,0,.15);max-width:340px}
+#toast.show{transform:translateX(0)}
+#toast.s{background:var(--grn);color:#fff}#toast.e{background:var(--red);color:#fff}#toast.i{background:var(--nv);color:#fff}
+
+/* LOGIN */
+#login-screen{display:none;min-height:100vh;background:var(--nv);align-items:center;justify-content:center;padding:20px}
+#login-screen.show{display:flex}
+.lc{background:var(--nv2);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:36px 32px;width:100%;max-width:420px;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.lc-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.lc-logo-ic{width:42px;height:42px;background:var(--bl);border-radius:13px;display:flex;align-items:center;justify-content:center}
+.lc-brand{font-size:19px;font-weight:800;color:#fff}
+.lc-brand span{color:var(--g400);font-size:12px;font-weight:500;margin-left:4px}
+.lc-title{font-size:21px;font-weight:800;color:#fff;margin-bottom:4px}
+.lc-sub{font-size:13px;color:var(--g400);margin-bottom:4px}
+.api-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px;margin:16px 0}
+.api-lbl{font-size:11px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.cdot{width:7px;height:7px;border-radius:50%;background:var(--g500);transition:background .3s;display:inline-block}
+.cdot.ok{background:var(--grn)}.cdot.err{background:var(--red)}.cdot.chk{background:var(--amb);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.ctxt{font-size:11px;color:var(--g500);margin-top:4px}
+.lfl{font-size:11px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:block}
+.lfi{width:100%;padding:11px 13px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;color:#fff;outline:none;transition:all .2s;margin-bottom:11px}
+.lfi:focus{border-color:var(--bl)}.lfi::placeholder{color:var(--g500)}
+.login-btn{width:100%;padding:13px;background:var(--bl);color:#fff;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 8px 24px rgba(37,99,235,.3)}
+.login-btn:hover{background:var(--bl2)}.login-btn:active{transform:scale(.98)}.login-btn:disabled{opacity:.6}
+.lerr{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);border-radius:9px;padding:10px 12px;font-size:13px;color:#FCA5A5;margin-bottom:11px;display:none}
+.lerr.show{display:block}
+
+/* APP */
+#app{display:none;min-height:100vh}
+#app.show{display:flex}
+
+/* SIDEBAR */
+.sidebar{width:var(--sb);background:var(--nv);min-height:100vh;display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;border-right:1px solid rgba(255,255,255,.04)}
+.sb-head{padding:18px 15px;border-bottom:1px solid rgba(255,255,255,.05)}
+.sb-logo{display:flex;align-items:center;gap:9px}
+.sb-logo-ic{width:34px;height:34px;background:var(--bl);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.sb-brand{font-size:15px;font-weight:800;color:#fff}.sb-brand-sub{font-size:10px;color:var(--g500);font-weight:600}
+.sb-nav{flex:1;padding:11px 8px;overflow-y:auto}
+.sb-sec{font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.12em;padding:10px 10px 5px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;cursor:pointer;transition:all .15s;margin-bottom:2px;color:var(--g400);font-size:13px;font-weight:600;border:none;background:none;width:100%;text-align:left}
+.sb-item:hover{background:rgba(255,255,255,.05);color:#fff}
+.sb-item.on{background:rgba(37,99,235,.18);color:var(--bl);border-left:3px solid var(--bl)}
+.sb-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px;display:none}
+.sb-foot{padding:11px 8px;border-top:1px solid rgba(255,255,255,.05)}
+.sb-user{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:10px;background:rgba(255,255,255,.04)}
+.sb-av{width:30px;height:30px;background:var(--bl);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0}
+.sb-uname{font-size:12px;font-weight:700;color:#fff}.sb-urole{font-size:10px;color:var(--g500)}
+.sb-logout{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--g500);padding:4px;transition:color .2s}
+.sb-logout:hover{color:var(--red)}
+
+/* MAIN */
+.main{margin-left:var(--sb);flex:1;min-height:100vh}
+.topbar{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.tb-title{font-size:15px;font-weight:800}
+.tb-right{display:flex;align-items:center;gap:9px}
+.tb-date{font-size:12px;color:var(--g500)}
+.rb{display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--g100);border:1px solid var(--g200);border-radius:8px;font-family:'Sora',sans-serif;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;transition:all .2s}
+.rb:hover{background:var(--blt);border-color:var(--bl);color:var(--bl)}
+.content{padding:20px 24px}
+
+/* PANELS */
+.panel{display:none}.panel.on{display:block;animation:fu .2s ease-out}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* STAT GRID */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}
+.scard{background:#fff;border-radius:15px;padding:17px;border:1px solid var(--g200)}
+.scard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.scard-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+.sbadge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+.sbadge.up{background:var(--grn2);color:#065F46}.sbadge.dn{background:var(--red2);color:#991B1B}.sbadge.neu{background:var(--g100);color:var(--g500)}
+.sval{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.slbl{font-size:12px;font-weight:600;color:var(--g500);margin-top:2px}
+
+/* CARD */
+.card{background:#fff;border-radius:15px;border:1px solid var(--g200);margin-bottom:18px;overflow:hidden}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--g100)}
+.card-ti{font-size:14px;font-weight:800}.card-su{font-size:12px;color:var(--g500);margin-top:1px}
+
+/* TABLE */
+.twrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{padding:10px 15px;text-align:left;font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.08em;background:var(--g50);border-bottom:1px solid var(--g200);white-space:nowrap}
+td{padding:11px 15px;font-size:13px;border-bottom:1px solid var(--g100);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--g50)}
+.tdu{display:flex;align-items:center;gap:9px}
+.tdav{width:30px;height:30px;border-radius:9px;background:var(--blt);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--bl);flex-shrink:0}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.badge.p{background:var(--amb2);color:#92400E}
+.badge.a,.badge.active{background:var(--grn2);color:#065F46}
+.badge.r,.badge.suspended{background:var(--red2);color:#991B1B}
+.badge.inactive{background:var(--g100);color:var(--g500)}
+.badge.lv{background:var(--blt);color:var(--bl2)}
+
+/* ACTION BUTTONS */
+.ab{padding:4px 10px;border-radius:7px;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:all .15s;margin-right:3px}
+.ab:active{transform:scale(.95)}
+.ab.app{background:var(--grn2);color:#065F46}.ab.rej{background:var(--red2);color:#991B1B}
+.ab.edt{background:var(--blt);color:var(--bl2)}.ab.sus{background:var(--amb2);color:#92400E}
+.ab.del{background:var(--red2);color:#991B1B}
+.ab.ton{background:var(--grn2);color:#065F46}.ab.toff{background:var(--g100);color:var(--g500)}
+.ab.prim{background:var(--bl);color:#fff}
+
+/* FILTER BAR */
+.fbar{display:flex;align-items:center;gap:8px;padding:11px 18px;border-bottom:1px solid var(--g100);flex-wrap:wrap}
+.fi2{padding:7px 11px;border:1.5px solid var(--g200);border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;color:var(--g900);outline:none;background:#fff;transition:all .2s;min-width:180px}
+.fi2:focus{border-color:var(--bl)}
+.sel{padding:7px 11px;border:1.5px solid var(--g200);border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;color:var(--g900);outline:none;background:#fff;cursor:pointer}
+
+/* MODAL */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
+.mov.show{display:flex}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:0 40px 80px rgba(0,0,0,.2)}
+.mhdr{display:flex;align-items:center;justify-content:space-between;padding:17px 22px;border-bottom:1px solid var(--g100)}
+.mti{font-size:15px;font-weight:800}
+.mcls{width:28px;height:28px;background:var(--g100);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.mcls:hover{background:var(--g200)}
+.mbody{padding:18px 22px}
+.mg{margin-bottom:12px}
+.ml{font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:block}
+.mi{width:100%;padding:10px 12px;border:1.5px solid var(--g200);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;color:var(--g900);outline:none;transition:all .2s}
+.mi:focus{border-color:var(--bl)}
+.msel{width:100%;padding:10px 12px;border:1.5px solid var(--g200);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;color:var(--g900);outline:none;background:#fff}
+.mta{width:100%;padding:10px 12px;border:1.5px solid var(--g200);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;color:var(--g900);outline:none;resize:vertical;min-height:80px}
+.mta:focus{border-color:var(--bl)}
+.mfoot{display:flex;gap:9px;padding:14px 22px;border-top:1px solid var(--g100)}
+.mb{flex:1;padding:11px;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.mb.cancel{background:var(--g100);color:var(--g600)}.mb.confirm{background:var(--bl);color:#fff}.mb.danger{background:var(--red);color:#fff}
+.mb:active{transform:scale(.97)}
+.confirm-warn{background:var(--red2);border:1px solid rgba(239,68,68,.18);border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;color:#991B1B;font-weight:600;display:flex;gap:8px;align-items:flex-start}
+
+/* PAGINATION */
+.pgbar{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-top:1px solid var(--g100)}
+.pg-info{font-size:12px;color:var(--g500)}
+.pg-btns{display:flex;gap:5px}
+.pgb{padding:5px 10px;border:1.5px solid var(--g200);border-radius:7px;background:#fff;font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.pgb:hover{border-color:var(--bl);color:var(--bl)}.pgb.on{background:var(--bl);border-color:var(--bl);color:#fff}
+.pgb:disabled{opacity:.4;cursor:not-allowed}
+
+/* SETTINGS */
+.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ss{background:#fff;border-radius:15px;border:1px solid var(--g200);padding:18px}
+.ss.full{grid-column:1/-1}
+.ss-ti{font-size:13px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ss-ic{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sg{margin-bottom:11px}
+.sl{font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;display:block}
+.si{width:100%;padding:10px 12px;border:1.5px solid var(--g200);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;color:var(--g900);outline:none;transition:all .2s}
+.si:focus{border-color:var(--bl)}
+.ssel{width:100%;padding:10px 12px;border:1.5px solid var(--g200);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;color:var(--g900);outline:none;background:#fff;cursor:pointer}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--g100)}
+.toggle-row:last-of-type{border-bottom:none}
+.tg-lbl{font-size:13px;font-weight:600}.tg-sub{font-size:11px;color:var(--g400);margin-top:1px}
+.toggle{position:relative;width:42px;height:22px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.slider{position:absolute;inset:0;background:var(--g300);border-radius:11px;cursor:pointer;transition:.3s}
+.slider:before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+input:checked + .slider{background:var(--bl)}
+input:checked + .slider:before{transform:translateX(20px)}
+.save-btn{width:100%;padding:11px;background:var(--bl);color:#fff;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:12px}
+.save-btn:hover{background:var(--bl2)}.save-btn:active{transform:scale(.98)}
+
+/* LEVELS */
+.lvl-row{display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;gap:7px;align-items:center;padding:9px 0;border-bottom:1px solid var(--g100)}
+.lvl-row:last-child{border-bottom:none}
+.lvl-inp{padding:7px 10px;border:1.5px solid var(--g200);border-radius:8px;font-family:'Sora',sans-serif;font-size:13px;color:var(--g900);outline:none;width:100%}
+.lvl-inp:focus{border-color:var(--bl)}
+
+/* DASH GRID */
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ai{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--g100)}
+.ai:last-child{border-bottom:none}
+.adot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.adot.g{background:var(--grn)}.adot.b{background:var(--bl)}.adot.a{background:var(--amb)}.adot.r{background:var(--red)}
+.atext{font-size:13px;flex:1}
+
+/* EMPTY */
+.empty-row td{text-align:center;padding:34px;color:var(--g400);font-size:13px;font-weight:600}
+
+@media(max-width:1200px){.sgrid{grid-template-columns:1fr 1fr}.sgrid2{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.sidebar{transform:translateX(-100%);transition:.3s}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.content{padding:14px}.topbar{padding:0 14px}}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+  <div class="ld-brand">earnix admin</div>
+  <div class="ld-sub">Management Console</div>
+  <div class="ld-spin"></div>
+</div>
+<div id="toast"></div>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="lc">
+    <div class="lc-logo">
+      <div class="lc-logo-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="lc-brand">earnix <span>admin</span></div>
+    </div>
+    <div class="lc-title">Admin Console</div>
+    <div class="lc-sub">Enter your Apps Script URL then sign in</div>
+    <div class="api-box">
+      <div class="api-lbl"><span class="cdot" id="cdot"></span>Google Apps Script URL</div>
+      <input type="url" id="api-url" class="lfi" placeholder="https://script.google.com/macros/s/…/exec" style="margin-bottom:4px" oninput="adm.onUrl()">
+      <div class="ctxt" id="ctxt">Paste your deployed Web App URL above</div>
+    </div>
+    <div id="lerr" class="lerr"></div>
+    <label class="lfl">Username</label>
+    <input type="text" id="adm-u" class="lfi" placeholder="admin" autocomplete="username">
+    <label class="lfl">Password</label>
+    <input type="password" id="adm-p" class="lfi" placeholder="••••••••" autocomplete="current-password">
+    <button class="login-btn" id="login-btn" onclick="adm.login()">Sign In to Console</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-head">
+      <div class="sb-logo">
+        <div class="sb-logo-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div><div class="sb-brand">earnix</div><div class="sb-brand-sub">Admin Console</div></div>
+      </div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-sec">Main</div>
+      <button class="sb-item on" data-panel="dashboard" onclick="adm.nav('dashboard')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</button>
+      <button class="sb-item" data-panel="users" onclick="adm.nav('users')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users</button>
+      <div class="sb-sec">Finance</div>
+      <button class="sb-item" data-panel="deposits" onclick="adm.nav('deposits')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Deposits<span class="sb-badge" id="dep-badge">0</span></button>
+      <button class="sb-item" data-panel="withdrawals" onclick="adm.nav('withdrawals')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Withdrawals<span class="sb-badge" id="wd-badge">0</span></button>
+      <div class="sb-sec">Content</div>
+      <button class="sb-item" data-panel="tasks" onclick="adm.nav('tasks')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Tasks</button>
+      <button class="sb-item" data-panel="announcements" onclick="adm.nav('announcements')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Announcements</button>
+      <div class="sb-sec">Config</div>
+      <button class="sb-item" data-panel="levels" onclick="adm.nav('levels')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>VIP Levels</button>
+      <button class="sb-item" data-panel="settings" onclick="adm.nav('settings')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</button>
+    </div>
+    <div class="sb-foot">
+      <div class="sb-user">
+        <div class="sb-av" id="sb-av">A</div>
+        <div><div class="sb-uname" id="sb-name">Admin</div><div class="sb-urole">Superadmin</div></div>
+        <button class="sb-logout" onclick="adm.logout()" title="Sign out"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button onclick="adm.toggleSb()" id="menu-btn" style="display:none;background:none;border:none;cursor:pointer;color:var(--g600)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <div class="tb-title" id="tb-title">Dashboard</div>
+      </div>
+      <div class="tb-right">
+        <div class="tb-date" id="tb-date"></div>
+        <button class="rb" onclick="adm.refresh()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Refresh</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <div id="panel-dashboard" class="panel on">
+        <div class="sgrid">
+          <div class="scard"><div class="scard-top"><div class="scard-ic" style="background:#EFF6FF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="sbadge up" id="s-users-badge">+0</span></div><div class="sval" id="s-users">0</div><div class="slbl">Total Users</div></div>
+          <div class="scard"><div class="scard-top"><div class="scard-ic" style="background:#D1FAE5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="sbadge up">all time</span></div><div class="sval" id="s-dep">₦0</div><div class="slbl">Total Deposits</div></div>
+          <div class="scard"><div class="scard-top"><div class="scard-ic" style="background:#FEE2E2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><span class="sbadge dn">all time</span></div><div class="sval" id="s-wd">₦0</div><div class="slbl">Total Withdrawals</div></div>
+          <div class="scard"><div class="scard-top"><div class="scard-ic" style="background:#FEF3C7"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="sbadge neu">pending</span></div><div class="sval" id="s-pend">0</div><div class="slbl">Pending Approvals</div></div>
+        </div>
+        <div class="dash-grid">
+          <div class="card"><div class="card-hdr"><div><div class="card-ti">Recent Transactions</div><div class="card-su">Latest 8</div></div></div><div class="twrap"><table><thead><tr><th>User</th><th>Type</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="dash-txns"><tr class="empty-row"><td colspan="5">Loading…</td></tr></tbody></table></div></div>
+          <div class="card"><div class="card-hdr"><div><div class="card-ti">Platform Activity</div></div></div><div style="padding:5px 18px 16px" id="dash-act"></div></div>
+        </div>
+      </div>
+
+      <!-- USERS -->
+      <div id="panel-users" class="panel">
+        <div class="card">
+          <div class="card-hdr"><div><div class="card-ti">All Users</div><div class="card-su" id="users-count">0 total</div></div></div>
+          <div class="fbar">
+            <input type="text" class="fi2" id="usearch" placeholder="🔍 Search name or phone…" oninput="adm.filterUsers()">
+            <select class="sel" id="uflvl" onchange="adm.filterUsers()"><option value="">All Levels</option><option value="0">Free</option><option value="1">Bronze</option><option value="2">Silver</option><option value="3">Gold</option><option value="4">Platinum</option><option value="5">Diamond</option><option value="6">Elite</option></select>
+            <select class="sel" id="ufstat" onchange="adm.filterUsers()"><option value="">All Status</option><option value="active">Active</option><option value="suspended">Suspended</option></select>
+          </div>
+          <div class="twrap"><table><thead><tr><th>User</th><th>Phone</th><th>Balance</th><th>Level</th><th>Referred By</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="users-tbody"><tr class="empty-row"><td colspan="8">Loading…</td></tr></tbody></table></div>
+          <div class="pgbar"><div class="pg-info" id="upg-info">Showing 0 of 0</div><div class="pg-btns" id="upg-btns"></div></div>
+        </div>
+      </div>
+
+      <!-- DEPOSITS -->
+      <div id="panel-deposits" class="panel">
+        <div class="card">
+          <div class="card-hdr"><div><div class="card-ti">Deposit Requests</div><div class="card-su" id="dep-count">0 requests</div></div></div>
+          <div class="fbar"><select class="sel" id="dep-fil" onchange="adm.renderDeposits()"><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="">All</option></select></div>
+          <div class="twrap"><table><thead><tr><th>User</th><th>Amount</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="dep-tbody"><tr class="empty-row"><td colspan="5">Loading…</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- WITHDRAWALS -->
+      <div id="panel-withdrawals" class="panel">
+        <div class="card">
+          <div class="card-hdr"><div><div class="card-ti">Withdrawal Requests</div><div class="card-su" id="wd-count">0 requests</div></div></div>
+          <div class="fbar"><select class="sel" id="wd-fil" onchange="adm.renderWithdrawals()"><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option><option value="">All</option></select></div>
+          <div class="twrap"><table><thead><tr><th>User</th><th>Amount</th><th>Bank</th><th>Account</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="wd-tbody"><tr class="empty-row"><td colspan="7">Loading…</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div id="panel-tasks" class="panel">
+        <div class="card">
+          <div class="card-hdr"><div><div class="card-ti">Task Manager</div><div class="card-su" id="tasks-count">0 tasks</div></div><button class="rb" style="background:var(--bl);border-color:var(--bl);color:#fff" onclick="adm.openAddTask()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Task</button></div>
+          <div class="twrap"><table><thead><tr><th>Task</th><th>Platform</th><th>Reward</th><th>Min VIP</th><th>Status</th><th>Actions</th></tr></thead><tbody id="tasks-tbody"><tr class="empty-row"><td colspan="6">Loading…</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ANNOUNCEMENTS -->
+      <div id="panel-announcements" class="panel">
+        <div class="card">
+          <div class="card-hdr"><div><div class="card-ti">Announcements</div><div class="card-su">Ticker messages on homepage</div></div><button class="rb" style="background:var(--bl);border-color:var(--bl);color:#fff" onclick="adm.openAddAnn()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</button></div>
+          <div class="twrap"><table><thead><tr><th>Message</th><th>Status</th><th>Actions</th></tr></thead><tbody id="ann-tbody"><tr class="empty-row"><td colspan="3">Loading…</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- VIP LEVELS -->
+      <div id="panel-levels" class="panel">
+        <div class="card">
+          <div class="card-hdr"><div><div class="card-ti">VIP Levels Configuration</div><div class="card-su">Edit deposits, rewards and task limits</div></div><button class="rb" style="background:var(--bl);border-color:var(--bl);color:#fff" onclick="adm.saveLevels()">Save Levels</button></div>
+          <div style="padding:16px 20px">
+            <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;gap:7px;padding-bottom:9px;border-bottom:2px solid var(--g200);margin-bottom:4px">
+              <div style="font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase">Lvl</div>
+              <div style="font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase">Name</div>
+              <div style="font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase">Min Deposit (₦)</div>
+              <div style="font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase">Per Task (₦)</div>
+              <div style="font-size:10px;font-weight:700;color:var(--g500);text-transform:uppercase">Daily Tasks</div>
+            </div>
+            <div id="levels-rows"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="panel-settings" class="panel">
+        <div class="sgrid2">
+          <div class="ss"><div class="ss-ti"><div class="ss-ic" style="background:#EFF6FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>Site Information</div>
+            <div class="sg"><label class="sl">Site Name</label><input type="text" class="si" id="s-site-name" placeholder="Earnix"></div>
+            <div class="sg"><label class="sl">Tagline</label><input type="text" class="si" id="s-tagline" placeholder="Earn Daily. Earn Smart."></div>
+            <div class="sg"><label class="sl">Site URL (for referral links)</label><input type="url" class="si" id="s-site-url" placeholder="https://yourdomain.com/earnix.html"></div>
+            <button class="save-btn" onclick="adm.saveSettings()">Save</button>
+          </div>
+          <div class="ss"><div class="ss-ti"><div class="ss-ic" style="background:#D1FAE5"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>Bank Details</div>
+            <div class="sg"><label class="sl">Bank Name</label><input type="text" class="si" id="s-bank-name" placeholder="First Bank Nigeria"></div>
+            <div class="sg"><label class="sl">Account Number</label><input type="text" class="si" id="s-bank-acct" placeholder="3099887766"></div>
+            <div class="sg"><label class="sl">Account Name</label><input type="text" class="si" id="s-bank-aname" placeholder="Earnix Platform Ltd"></div>
+            <button class="save-btn" onclick="adm.saveSettings()">Save</button>
+          </div>
+          <div class="ss"><div class="ss-ti"><div class="ss-ic" style="background:#FEF3C7"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>Transaction Limits</div>
+            <div class="sg"><label class="sl">Min Deposit (₦)</label><input type="number" class="si" id="s-min-dep" placeholder="1000"></div>
+            <div class="sg"><label class="sl">Min Withdrawal (₦)</label><input type="number" class="si" id="s-min-wd" placeholder="1000"></div>
+            <div class="sg"><label class="sl">Referral Commission (%)</label><input type="number" class="si" id="s-ref-pct" placeholder="5" min="0" max="100"></div>
+            <button class="save-btn" onclick="adm.saveSettings()">Save</button>
+          </div>
+          <div class="ss"><div class="ss-ti"><div class="ss-ic" style="background:#F5F3FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>Support Contact</div>
+            <div class="sg"><label class="sl">Support Email</label><input type="email" class="si" id="s-email" placeholder="support@earnix.app"></div>
+            <div class="sg"><label class="sl">WhatsApp Number</label><input type="tel" class="si" id="s-whatsapp" placeholder="+234…"></div>
+            <button class="save-btn" onclick="adm.saveSettings()">Save</button>
+          </div>
+          <div class="ss full"><div class="ss-ti"><div class="ss-ic" style="background:#FEE2E2"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>Maintenance Mode</div>
+            <div class="toggle-row"><div><div class="tg-lbl">Enable Maintenance Mode</div><div class="tg-sub">Users will see the maintenance page instead of the app</div></div><label class="toggle"><input type="checkbox" id="s-maint" onchange="adm.saveSettings()"><span class="slider"></span></label></div>
+            <div class="sg" style="margin-top:12px"><label class="sl">Maintenance Message</label><textarea class="mta" id="s-maint-msg" rows="2" style="width:100%;border:1.5px solid var(--g200);border-radius:10px;font-family:'Sora',sans-serif;font-size:14px;padding:10px 12px;outline:none;resize:vertical"></textarea></div>
+            <button class="save-btn" onclick="adm.saveSettings()" style="max-width:220px">Save Maintenance Settings</button>
+          </div>
+          <div class="ss full"><div class="ss-ti"><div class="ss-ic" style="background:#EFF6FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>Change Admin Password</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px">
+              <div class="sg"><label class="sl">Current Password</label><input type="password" class="si" id="s-curr-pass" placeholder="Current password"></div>
+              <div class="sg"><label class="sl">New Password</label><input type="password" class="si" id="s-new-pass" placeholder="New password"></div>
+              <div class="sg"><label class="sl">Confirm New</label><input type="password" class="si" id="s-conf-pass" placeholder="Confirm new password"></div>
+            </div>
+            <button class="save-btn" onclick="adm.changePassword()" style="max-width:220px">Change Password</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- MODALS -->
+<!-- Edit User -->
+<div id="m-user" class="mov"><div class="modal">
+  <div class="mhdr"><div class="mti">Edit User</div><button class="mcls" onclick="adm.cm('m-user')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="mbody">
+    <input type="hidden" id="eu-uid">
+    <div class="mg"><label class="ml">Username</label><input type="text" id="eu-uname" class="mi"></div>
+    <div class="mg"><label class="ml">Phone</label><input type="tel" id="eu-phone" class="mi"></div>
+    <div class="mg"><label class="ml">Balance (₦)</label><input type="number" id="eu-bal" class="mi"></div>
+    <div class="mg"><label class="ml">VIP Level</label><select id="eu-lvl" class="msel"><option value="0">0 - Free</option><option value="1">1 - Bronze</option><option value="2">2 - Silver</option><option value="3">3 - Gold</option><option value="4">4 - Platinum</option><option value="5">5 - Diamond</option><option value="6">6 - Elite</option></select></div>
+  </div>
+  <div class="mfoot"><button class="mb cancel" onclick="adm.cm('m-user')">Cancel</button><button class="mb confirm" onclick="adm.saveUser()">Save Changes</button></div>
+</div></div>
+
+<!-- Adjust Balance -->
+<div id="m-bal" class="mov"><div class="modal">
+  <div class="mhdr"><div class="mti">Adjust Balance</div><button class="mcls" onclick="adm.cm('m-bal')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="mbody">
+    <input type="hidden" id="ab-uid">
+    <div style="background:var(--blt);border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:13px;color:var(--bl2)">User: <strong id="ab-uname">—</strong> · Current: <strong id="ab-curr">₦0</strong></div>
+    <div class="mg"><label class="ml">Type</label><select id="ab-type" class="msel"><option value="add">Add funds (credit)</option><option value="subtract">Remove funds (debit)</option><option value="set">Set exact balance</option></select></div>
+    <div class="mg"><label class="ml">Amount (₦)</label><input type="number" id="ab-amt" class="mi" placeholder="Enter amount"></div>
+    <div class="mg"><label class="ml">Reason</label><input type="text" id="ab-reason" class="mi" placeholder="e.g. Manual deposit correction"></div>
+  </div>
+  <div class="mfoot"><button class="mb cancel" onclick="adm.cm('m-bal')">Cancel</button><button class="mb confirm" onclick="adm.saveBalance()">Apply</button></div>
+</div></div>
+
+<!-- Confirm -->
+<div id="m-confirm" class="mov"><div class="modal">
+  <div class="mhdr"><div class="mti" id="confirm-ti">Confirm</div><button class="mcls" onclick="adm.cm('m-confirm')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="mbody"><div class="confirm-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span id="confirm-msg">Are you sure?</span></div></div>
+  <div class="mfoot"><button class="mb cancel" onclick="adm.cm('m-confirm')">Cancel</button><button class="mb danger" onclick="adm.doConfirm()">Confirm</button></div>
+</div></div>
+
+<!-- Reject -->
+<div id="m-reject" class="mov"><div class="modal">
+  <div class="mhdr"><div class="mti" id="rej-ti">Reject Request</div><button class="mcls" onclick="adm.cm('m-reject')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="mbody">
+    <input type="hidden" id="rej-id"><input type="hidden" id="rej-type">
+    <div class="mg"><label class="ml">Reason (optional)</label><input type="text" id="rej-reason" class="mi" placeholder="e.g. Payment not received"></div>
+  </div>
+  <div class="mfoot"><button class="mb cancel" onclick="adm.cm('m-reject')">Cancel</button><button class="mb danger" onclick="adm.doReject()">Reject</button></div>
+</div></div>
+
+<!-- Task -->
+<div id="m-task" class="mov"><div class="modal">
+  <div class="mhdr"><div class="mti" id="task-mti">Add Task</div><button class="mcls" onclick="adm.cm('m-task')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="mbody">
+    <input type="hidden" id="t-id">
+    <div class="mg"><label class="ml">Task Title</label><input type="text" id="t-title" class="mi" placeholder="e.g. Watch TikTok Video"></div>
+    <div class="mg"><label class="ml">Platform</label><select id="t-plat" class="msel"><option>TikTok</option><option>YouTube</option><option>Instagram</option><option>Facebook</option><option>Twitter</option><option>Other</option></select></div>
+    <div class="mg"><label class="ml">Task Link / URL</label><input type="url" id="t-link" class="mi" placeholder="https://…"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="mg"><label class="ml">Reward (₦)</label><input type="number" id="t-reward" class="mi" placeholder="1200"></div>
+      <div class="mg"><label class="ml">Min VIP Level</label><input type="number" id="t-lvl" class="mi" placeholder="1" min="0" max="8"></div>
+    </div>
+  </div>
+  <div class="mfoot"><button class="mb cancel" onclick="adm.cm('m-task')">Cancel</button><button class="mb confirm" onclick="adm.saveTask()">Save Task</button></div>
+</div></div>
+
+<!-- Announcement -->
+<div id="m-ann" class="mov"><div class="modal">
+  <div class="mhdr"><div class="mti" id="ann-mti">Add Announcement</div><button class="mcls" onclick="adm.cm('m-ann')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="mbody">
+    <input type="hidden" id="an-id">
+    <div class="mg"><label class="ml">Message</label><textarea id="an-msg" class="mta" placeholder="Enter announcement…"></textarea></div>
+    <div class="mg"><label class="ml">Status</label><select id="an-active" class="msel"><option value="true">Active (visible)</option><option value="false">Inactive (hidden)</option></select></div>
+  </div>
+  <div class="mfoot"><button class="mb cancel" onclick="adm.cm('m-ann')">Cancel</button><button class="mb confirm" onclick="adm.saveAnn()">Save</button></div>
+</div></div>
+
+<script>
+const adm = {
+  api:       localStorage.getItem('earnix_api_url')||'',
+  db:        null,
+  admin:     null,
+  pending:   null,
+  uPage:     1,
+  uPer:      15,
+  filtU:     [],
+
+  /* ── INIT ── */
+  async init() {
+    document.getElementById('tb-date').textContent = new Date().toLocaleDateString('en-NG',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+    const savedUrl = localStorage.getItem('earnix_api_url')||'';
+    if (savedUrl) { document.getElementById('api-url').value=savedUrl; this.api=savedUrl; this.setConn('ok','✓ URL loaded'); }
+    const raw = localStorage.getItem('earnix_admin');
+    if (raw) { try{ this.admin=JSON.parse(raw); }catch{ localStorage.removeItem('earnix_admin'); } }
+    if (this.admin && this.api) {
+      await this.syncDb();
+      if (this.db && !this.db.error) { this.showApp(); this.hideLoader(); return; }
+    }
+    this.hideLoader(); this.showLogin();
+  },
+
+  async syncDb() {
+    if (!this.api) return;
+    try {
+      const r=await fetch(this.api+'?role=admin',{signal:AbortSignal.timeout(8000)});
+      if (!r.ok) throw new Error('HTTP '+r.status);
+      this.db=await r.json();
+    } catch { this.db=null; }
+  },
+
+  hideLoader(){ const e=document.getElementById('loader'); e.classList.add('off'); setTimeout(()=>e.style.display='none',500); },
+  showLogin() { document.getElementById('login-screen').classList.add('show'); document.getElementById('app').classList.remove('show'); },
+  showApp()   {
+    document.getElementById('login-screen').classList.remove('show');
+    document.getElementById('app').classList.add('show');
+    const n=this.admin?.username||'Admin';
+    document.getElementById('sb-name').textContent=n;
+    document.getElementById('sb-av').textContent=n[0].toUpperCase();
+    this.nav('dashboard'); this.updateBadges();
+  },
+
+  /* ── URL ── */
+  _ut:null,
+  onUrl(){
+    const url=document.getElementById('api-url').value.trim();
+    this.api=url;
+    if (url) localStorage.setItem('earnix_api_url',url);
+    this.setConn('chk','Checking…');
+    clearTimeout(this._ut);
+    this._ut=setTimeout(async()=>{
+      if (!url){this.setConn('','Paste your URL above');return;}
+      try{
+        const r=await fetch(url+'?role=admin',{signal:AbortSignal.timeout(5000)});
+        const d=await r.json();
+        if (d&&(d.admins||d.users)){this.db=d;this.setConn('ok','✓ Connected — database loaded');}
+        else this.setConn('ok','✓ Connected to GAS');
+      }catch{this.setConn('err','⚠ Cannot reach this URL');}
+    },700);
+  },
+  setConn(st,msg){
+    const d=document.getElementById('cdot'); const t=document.getElementById('ctxt');
+    d.className='cdot'+(st?' '+st:''); if(t)t.textContent=msg;
+  },
+
+  /* ── AUTH ── */
+  async login(){
+    const url=document.getElementById('api-url').value.trim();
+    const user=document.getElementById('adm-u').value.trim();
+    const pass=document.getElementById('adm-p').value.trim();
+    const err=document.getElementById('lerr'); err.classList.remove('show');
+    if (!url){err.textContent='Please enter your Apps Script URL';err.classList.add('show');return;}
+    if (!user||!pass){err.textContent='Enter username and password';err.classList.add('show');return;}
+    this.api=url; localStorage.setItem('earnix_api_url',url);
+    const btn=document.getElementById('login-btn'); btn.disabled=true; btn.textContent='Signing in…';
+    try{
+      const r=await fetch(`${url}?action=adminLogin&username=${encodeURIComponent(user)}&password=${encodeURIComponent(pass)}`);
+      const d=await r.json();
+      if (d.success){
+        this.admin=d.admin; localStorage.setItem('earnix_admin',JSON.stringify(d.admin));
+        await this.syncDb();
+        if (!this.db||this.db.error) throw new Error('db');
+        this.showApp();
+      }else{err.textContent=d.error||'Invalid credentials';err.classList.add('show');}
+    }catch(e){err.textContent=e.message==='db'?'Login OK but DB failed to load. Check GAS permissions.':'Connection error — verify your URL';err.classList.add('show');}
+    btn.disabled=false; btn.textContent='Sign In to Console';
+  },
+
+  logout(){
+    if (!confirm('Sign out?'))return;
+    localStorage.removeItem('earnix_admin'); this.admin=null;
+    document.getElementById('app').classList.remove('show');
+    document.getElementById('login-screen').classList.add('show');
+    ['adm-u','adm-p'].forEach(id=>document.getElementById(id).value='');
+  },
+
+  /* ── NAV ── */
+  nav(pid){
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+    document.getElementById('panel-'+pid).classList.add('on');
+    document.querySelectorAll('.sb-item').forEach(b=>b.classList.toggle('on',b.dataset.panel===pid));
+    const titles={dashboard:'Dashboard',users:'Users',deposits:'Deposits',withdrawals:'Withdrawals',tasks:'Tasks',announcements:'Announcements',levels:'VIP Levels',settings:'Settings'};
+    document.getElementById('tb-title').textContent=titles[pid]||pid;
+    if (pid==='dashboard')    this.renderDash();
+    if (pid==='users')        this.renderUsers();
+    if (pid==='deposits')     this.renderDeposits();
+    if (pid==='withdrawals')  this.renderWithdrawals();
+    if (pid==='tasks')        this.renderTasks();
+    if (pid==='announcements')this.renderAnns();
+    if (pid==='levels')       this.renderLevels();
+    if (pid==='settings')     this.renderSettings();
+  },
+
+  async refresh(){ this.toast('Syncing…','i'); await this.syncDb(); const p=document.querySelector('.panel.on')?.id?.replace('panel-',''); if(p)this.nav(p); this.updateBadges(); this.toast('Refreshed ✓','s'); },
+  toggleSb(){ document.getElementById('sidebar').classList.toggle('open'); },
+
+  updateBadges(){
+    if (!this.db?.transactions)return;
+    const pd=this.db.transactions.filter(t=>t.type==='deposit'&&t.status==='pending').length;
+    const pw=this.db.transactions.filter(t=>t.type==='withdrawal'&&t.status==='pending').length;
+    const db=document.getElementById('dep-badge'); db.textContent=pd; db.style.display=pd?'inline':'none';
+    const wb=document.getElementById('wd-badge');  wb.textContent=pw; wb.style.display=pw?'inline':'none';
+  },
+
+  /* ── POST HELPER — FIX: text/plain to avoid CORS preflight ── */
+  async post(body){
+    const r=await fetch(this.api,{method:'POST',body:JSON.stringify(body),headers:{'Content-Type':'text/plain'}});
+    return r.json();
+  },
+
+  /* ── DASHBOARD ── */
+  renderDash(){
+    if (!this.db)return;
+    const users=this.db.users||[]; const txns=this.db.transactions||[];
+    const totD=txns.filter(t=>t.type==='deposit'&&t.status==='approved').reduce((s,t)=>s+t.amount,0);
+    const totW=txns.filter(t=>t.type==='withdrawal'&&t.status==='approved').reduce((s,t)=>s+t.amount,0);
+    const pend=txns.filter(t=>t.status==='pending').length;
+    const today=new Date().toISOString().slice(0,10);
+    const newT=users.filter(u=>u.registered_at?.slice(0,10)===today).length;
+    this.setText('s-users',String(users.length));
+    this.setText('s-users-badge','+'+newT+' today');
+    this.setText('s-dep','₦'+this.fmt(totD));
+    this.setText('s-wd','₦'+this.fmt(totW));
+    this.setText('s-pend',String(pend));
+    const recent=[...txns].sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp)).slice(0,8);
+    const tb=document.getElementById('dash-txns');
+    if (!recent.length){tb.innerHTML='<tr class="empty-row"><td colspan="5">No transactions yet</td></tr>';}
+    else tb.innerHTML=recent.map(t=>{
+      const u=users.find(u=>u.uid===t.user_id);
+      return `<tr><td><div class="tdu"><div class="tdav">${(u?.username||'?')[0].toUpperCase()}</div>${this.esc(u?.username||'Unknown')}</div></td><td><span class="badge ${t.type==='deposit'?'a':'r'}">${t.type}</span></td><td style="font-weight:700">₦${this.fmt(t.amount)}</td><td><span class="badge ${t.status==='pending'?'p':t.status==='approved'?'a':'r'}">${t.status}</span></td><td style="font-size:12px;color:var(--g400)">${this.ds(t.timestamp)}</td></tr>`;
+    }).join('');
+    const act=(this.db.tasks||[]).filter(t=>t.active).length;
+    const sus=users.filter(u=>u.suspended).length;
+    const totBal=users.reduce((s,u)=>s+(u.balance||0),0);
+    document.getElementById('dash-act').innerHTML=[
+      {c:'b',t:`<strong>${this.db.tasks?.length||0}</strong> tasks (${act} active)`},
+      {c:'g',t:`<strong>₦${this.fmt(totD-totW)}</strong> net platform revenue`},
+      {c:'a',t:`<strong>₦${this.fmt(totBal)}</strong> total user balances`},
+      {c:'r',t:`<strong>${sus}</strong> suspended accounts`},
+      {c:'b',t:`<strong>${users.filter(u=>(u.level||0)>=3).length}</strong> Gold+ VIP members`},
+      {c:'g',t:`<strong>${users.filter(u=>u.referred_by).length}</strong> referred users`},
+    ].map(a=>`<div class="ai"><span class="adot ${a.c}"></span><span class="atext">${a.t}</span></div>`).join('');
+  },
+
+  /* ── USERS ── */
+  renderUsers(){ this.filtU=this.db?.users||[]; this.filterUsers(); },
+  filterUsers(){
+    const q=(document.getElementById('usearch')?.value||'').toLowerCase();
+    const lv=document.getElementById('uflvl')?.value;
+    const st=document.getElementById('ufstat')?.value;
+    this.filtU=(this.db?.users||[]).filter(u=>{
+      const mq=!q||u.username?.toLowerCase().includes(q)||(u.phone||'').includes(q);
+      const ml=!lv||String(u.level||0)===lv;
+      const ms=!st||(st==='suspended'?u.suspended:!u.suspended);
+      return mq&&ml&&ms;
+    });
+    this.uPage=1; this.renderUsersPage();
+  },
+  renderUsersPage(){
+    const total=this.filtU.length;
+    const start=(this.uPage-1)*this.uPer;
+    const slice=this.filtU.slice(start,start+this.uPer);
+    this.setText('users-count',total+' total users');
+    this.setText('upg-info',`Showing ${Math.min(start+1,total)}–${Math.min(start+this.uPer,total)} of ${total}`);
+    const tb=document.getElementById('users-tbody');
+    if (!slice.length){tb.innerHTML='<tr class="empty-row"><td colspan="8">No users found</td></tr>';}
+    else tb.innerHTML=slice.map(u=>{
+      const lvl=this.db.levels?.find(l=>l.level===(u.level||0));
+      return `<tr><td><div class="tdu"><div class="tdav">${u.username[0].toUpperCase()}</div><div><div style="font-weight:700">${this.esc(u.username)}</div><div style="font-size:11px;color:var(--g400)">${u.uid}</div></div></div></td><td>${this.esc(u.phone||'—')}</td><td style="font-weight:700">₦${this.fmt(u.balance||0)}</td><td><span class="badge lv">Lv${u.level||0} ${this.esc(lvl?.name||'Free')}</span></td><td style="font-size:12px;color:var(--g400)">${this.esc(u.referred_by||'—')}</td><td><span class="badge ${u.suspended?'suspended':'active'}">${u.suspended?'Suspended':'Active'}</span></td><td style="font-size:12px;color:var(--g400)">${this.ds(u.registered_at)}</td><td><button class="ab edt" onclick="adm.openEditUser('${u.uid}')">Edit</button><button class="ab edt" onclick="adm.openAdjBal('${u.uid}')">Balance</button><button class="ab sus" onclick="adm.toggleSuspend('${u.uid}')">${u.suspended?'Unsuspend':'Suspend'}</button><button class="ab del" onclick="adm.confirmDelete('${u.uid}')">Delete</button></td></tr>`;
+    }).join('');
+    const pages=Math.ceil(total/this.uPer);
+    const pg=document.getElementById('upg-btns'); pg.innerHTML='';
+    const prev=document.createElement('button'); prev.className='pgb'; prev.textContent='← Prev'; prev.disabled=this.uPage<=1; prev.onclick=()=>{this.uPage--;this.renderUsersPage();}; pg.appendChild(prev);
+    for(let i=1;i<=Math.min(pages,5);i++){const b=document.createElement('button');b.className='pgb'+(i===this.uPage?' on':'');b.textContent=i;const p=i;b.onclick=()=>{this.uPage=p;this.renderUsersPage();};pg.appendChild(b);}
+    const next=document.createElement('button'); next.className='pgb'; next.textContent='Next →'; next.disabled=this.uPage>=pages; next.onclick=()=>{this.uPage++;this.renderUsersPage();}; pg.appendChild(next);
+  },
+
+  openEditUser(uid){
+    const u=this.db.users.find(u=>u.uid===uid); if(!u)return;
+    document.getElementById('eu-uid').value=u.uid;
+    document.getElementById('eu-uname').value=u.username;
+    document.getElementById('eu-phone').value=u.phone||'';
+    document.getElementById('eu-bal').value=u.balance||0;
+    document.getElementById('eu-lvl').value=u.level||0;
+    this.om('m-user');
+  },
+  async saveUser(){
+    const uid=document.getElementById('eu-uid').value;
+    const uname=document.getElementById('eu-uname').value.trim();
+    const phone=document.getElementById('eu-phone').value.trim();
+    const bal=parseFloat(document.getElementById('eu-bal').value)||0;
+    const lvl=parseInt(document.getElementById('eu-lvl').value)||0;
+    if (!uname||!phone){this.toast('Username and phone required','e');return;}
+    const u=this.db.users.find(u=>u.uid===uid); if(!u)return;
+    u.username=uname; u.phone=phone; u.balance=bal; u.level=lvl;
+    const r=await this.post({action:'updateUser',user:u});
+    if (r.success){this.cm('m-user');this.renderUsers();this.toast('User updated ✓','s');}
+    else this.toast(r.error||'Save failed','e');
+  },
+
+  openAdjBal(uid){
+    const u=this.db.users.find(u=>u.uid===uid); if(!u)return;
+    document.getElementById('ab-uid').value=uid;
+    this.setText('ab-uname',u.username);
+    this.setText('ab-curr','₦'+this.fmt(u.balance||0));
+    document.getElementById('ab-amt').value='';
+    document.getElementById('ab-reason').value='';
+    document.getElementById('ab-type').value='add';
+    this.om('m-bal');
+  },
+  async saveBalance(){
+    const uid=document.getElementById('ab-uid').value;
+    const type=document.getElementById('ab-type').value;
+    const amount=parseFloat(document.getElementById('ab-amt').value)||0;
+    const reason=document.getElementById('ab-reason').value.trim();
+    if (!amount||amount<=0){this.toast('Enter a valid amount','e');return;}
+    const r=await this.post({action:'adjustBalance',uid,type,amount,reason});
+    if (r.success){
+      const u=this.db.users.find(u=>u.uid===uid);
+      if (u) u.balance=r.user.balance;
+      this.cm('m-bal'); this.renderUsers();
+      this.toast('Balance adjusted ✓','s');
+    }else this.toast(r.error||'Failed','e');
+  },
+
+  async toggleSuspend(uid){
+    const u=this.db.users.find(u=>u.uid===uid); if(!u)return;
+    u.suspended=!u.suspended;
+    const r=await this.post({action:'updateUser',user:u});
+    if (r.success){this.renderUsers();this.toast((u.suspended?'Suspended':'Unsuspended')+' ✓',u.suspended?'e':'s');}
+    else{u.suspended=!u.suspended;this.toast(r.error||'Failed','e');}
+  },
+  confirmDelete(uid){
+    const u=this.db.users.find(u=>u.uid===uid);
+    this.pending={type:'deleteUser',uid};
+    this.setText('confirm-ti','Delete User');
+    this.setText('confirm-msg',`Delete "${u?.username}"? All their data will be permanently removed.`);
+    this.om('m-confirm');
+  },
+  async doConfirm(){
+    const a=this.pending; if(!a)return;
+    if (a.type==='deleteUser'){
+      const r=await this.post({action:'deleteUser',uid:a.uid});
+      if (r.success){this.db.users=this.db.users.filter(u=>u.uid!==a.uid);this.cm('m-confirm');this.renderUsers();this.toast('User deleted ✓','s');}
+      else this.toast(r.error||'Failed','e');
+    }
+    this.pending=null;
+  },
+
+  /* ── DEPOSITS ── */
+  renderDeposits(){
+    const fil=document.getElementById('dep-fil')?.value||'pending';
+    const txns=(this.db?.transactions||[]).filter(t=>t.type==='deposit'&&(fil?t.status===fil:true));
+    txns.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+    this.setText('dep-count',txns.length+' requests');
+    const tb=document.getElementById('dep-tbody');
+    if (!txns.length){tb.innerHTML='<tr class="empty-row"><td colspan="5">No deposit requests found</td></tr>';return;}
+    tb.innerHTML=txns.map(t=>{
+      const u=this.db.users?.find(u=>u.uid===t.user_id);
+      const ip=t.status==='pending';
+      return `<tr><td><div class="tdu"><div class="tdav">${(u?.username||'?')[0].toUpperCase()}</div><div><div style="font-weight:700">${this.esc(u?.username||'Unknown')}</div><div style="font-size:11px;color:var(--g400)">${this.esc(u?.phone||'')}</div></div></div></td><td style="font-weight:800;font-size:15px">₦${this.fmt(t.amount)}</td><td><span class="badge ${t.status==='pending'?'p':t.status==='approved'?'a':'r'}">${t.status}</span></td><td style="font-size:12px;color:var(--g400)">${this.dl(t.timestamp)}</td><td>${ip?`<button class="ab app" onclick="adm.approveDeposit('${t.id}')">Approve</button><button class="ab rej" onclick="adm.openReject('${t.id}','deposit')">Reject</button>`:'<span style="font-size:12px;color:var(--g400)">—</span>'}</td></tr>`;
+    }).join('');
+  },
+  async approveDeposit(id){
+    const r=await this.post({action:'approveDeposit',txn_id:id});
+    if (r.success){await this.syncDb();this.renderDeposits();this.updateBadges();this.toast('Deposit approved & balance credited ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+
+  /* ── WITHDRAWALS ── */
+  renderWithdrawals(){
+    const fil=document.getElementById('wd-fil')?.value||'pending';
+    const txns=(this.db?.transactions||[]).filter(t=>t.type==='withdrawal'&&(fil?t.status===fil:true));
+    txns.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+    this.setText('wd-count',txns.length+' requests');
+    const tb=document.getElementById('wd-tbody');
+    if (!txns.length){tb.innerHTML='<tr class="empty-row"><td colspan="7">No withdrawal requests found</td></tr>';return;}
+    tb.innerHTML=txns.map(t=>{
+      const u=this.db.users?.find(u=>u.uid===t.user_id);
+      const ip=t.status==='pending';
+      return `<tr><td><div class="tdu"><div class="tdav">${(u?.username||'?')[0].toUpperCase()}</div><div><div style="font-weight:700">${this.esc(u?.username||'Unknown')}</div><div style="font-size:11px;color:var(--g400)">${this.esc(u?.phone||'')}</div></div></div></td><td style="font-weight:800;font-size:15px;color:var(--red)">₦${this.fmt(t.amount)}</td><td>${this.esc(t.bank_name||'—')}</td><td><div>${this.esc(t.account_number||'—')}</div><div style="font-size:11px;color:var(--g400)">${this.esc(t.account_name||'')}</div></td><td><span class="badge ${t.status==='pending'?'p':t.status==='approved'?'a':'r'}">${t.status}</span></td><td style="font-size:12px;color:var(--g400)">${this.dl(t.timestamp)}</td><td>${ip?`<button class="ab app" onclick="adm.approveWd('${t.id}')">Process</button><button class="ab rej" onclick="adm.openReject('${t.id}','withdrawal')">Reject</button>`:'<span style="font-size:12px;color:var(--g400)">—</span>'}</td></tr>`;
+    }).join('');
+  },
+  async approveWd(id){
+    const r=await this.post({action:'approveWithdrawal',txn_id:id});
+    if (r.success){await this.syncDb();this.renderWithdrawals();this.updateBadges();this.toast('Withdrawal processed ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+  openReject(id,type){
+    document.getElementById('rej-id').value=id;
+    document.getElementById('rej-type').value=type;
+    this.setText('rej-ti','Reject '+(type==='deposit'?'Deposit':'Withdrawal'));
+    document.getElementById('rej-reason').value='';
+    this.om('m-reject');
+  },
+  async doReject(){
+    const id=document.getElementById('rej-id').value;
+    const type=document.getElementById('rej-type').value;
+    const reason=document.getElementById('rej-reason').value.trim();
+    const action=type==='deposit'?'rejectDeposit':'rejectWithdrawal';
+    const r=await this.post({action,txn_id:id,reason});
+    if (r.success){
+      await this.syncDb(); this.cm('m-reject');
+      if (type==='deposit') this.renderDeposits(); else this.renderWithdrawals();
+      this.updateBadges(); this.toast('Request rejected ✓','e');
+    }else this.toast(r.error||'Failed','e');
+  },
+
+  /* ── TASKS ── */
+  renderTasks(){
+    const tasks=this.db?.tasks||[];
+    this.setText('tasks-count',tasks.length+' tasks');
+    const tb=document.getElementById('tasks-tbody');
+    if (!tasks.length){tb.innerHTML='<tr class="empty-row"><td colspan="6">No tasks found</td></tr>';return;}
+    tb.innerHTML=tasks.map(t=>`<tr><td><div class="tdu"><div class="tdav" style="font-size:16px;background:transparent">${this.pEmoji(t.platform)}</div><div><div style="font-weight:700">${this.esc(t.title)}</div>${t.link?`<a href="${this.esc(t.link)}" target="_blank" style="font-size:11px;color:var(--bl)">View ↗</a>`:''}</div></div></td><td>${this.esc(t.platform)}</td><td style="font-weight:700;color:var(--grn)">₦${this.fmt(t.reward)}</td><td><span class="badge lv">VIP ${t.level_required||0}+</span></td><td><span class="badge ${t.active?'active':'inactive'}">${t.active?'Active':'Inactive'}</span></td><td><button class="ab ${t.active?'toff':'ton'}" onclick="adm.toggleTask('${t.id}')">${t.active?'Deactivate':'Activate'}</button><button class="ab edt" onclick="adm.openEditTask('${t.id}')">Edit</button><button class="ab del" onclick="adm.deleteTask('${t.id}')">Delete</button></td></tr>`).join('');
+  },
+  openAddTask(){
+    this.setText('task-mti','Add New Task');
+    ['t-id','t-title','t-link','t-reward'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('t-plat').value='TikTok';
+    document.getElementById('t-lvl').value='1';
+    this.om('m-task');
+  },
+  openEditTask(id){
+    const t=this.db.tasks?.find(t=>t.id===id); if(!t)return;
+    this.setText('task-mti','Edit Task');
+    document.getElementById('t-id').value=t.id;
+    document.getElementById('t-title').value=t.title;
+    document.getElementById('t-plat').value=t.platform;
+    document.getElementById('t-link').value=t.link||'';
+    document.getElementById('t-reward').value=t.reward;
+    document.getElementById('t-lvl').value=t.level_required||0;
+    this.om('m-task');
+  },
+  async saveTask(){
+    const id=document.getElementById('t-id').value;
+    const title=document.getElementById('t-title').value.trim();
+    const plat=document.getElementById('t-plat').value;
+    const link=document.getElementById('t-link').value.trim();
+    const reward=parseFloat(document.getElementById('t-reward').value)||0;
+    const lvl=parseInt(document.getElementById('t-lvl').value)||0;
+    if (!title){this.toast('Task title required','e');return;}
+    if (!reward){this.toast('Reward amount required','e');return;}
+    const task={id:id||'t'+Date.now(),title,platform:plat,link,reward,level_required:lvl,active:true};
+    const r=await this.post({action:'saveTask',task});
+    if (r.success){await this.syncDb();this.cm('m-task');this.renderTasks();this.toast((id?'Task updated':'Task added')+' ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+  async toggleTask(id){
+    const t=this.db.tasks?.find(t=>t.id===id); if(!t)return;
+    t.active=!t.active;
+    const r=await this.post({action:'saveTask',task:t});
+    if (r.success){this.renderTasks();this.toast('Task '+(t.active?'activated':'deactivated')+' ✓',t.active?'s':'i');}
+    else{t.active=!t.active;this.toast(r.error||'Failed','e');}
+  },
+  async deleteTask(id){
+    if (!confirm('Delete this task?'))return;
+    const r=await this.post({action:'deleteTask',task_id:id});
+    if (r.success){this.db.tasks=this.db.tasks.filter(t=>t.id!==id);this.renderTasks();this.toast('Task deleted ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+
+  /* ── ANNOUNCEMENTS ── */
+  renderAnns(){
+    const anns=this.db?.announcements||[];
+    const tb=document.getElementById('ann-tbody');
+    if (!anns.length){tb.innerHTML='<tr class="empty-row"><td colspan="3">No announcements</td></tr>';return;}
+    tb.innerHTML=anns.map(a=>`<tr><td style="font-weight:600;max-width:360px">${this.esc(a.message)}</td><td><span class="badge ${a.active?'active':'inactive'}">${a.active?'Active':'Inactive'}</span></td><td><button class="ab edt" onclick="adm.openEditAnn('${a.id}')">Edit</button><button class="ab del" onclick="adm.deleteAnn('${a.id}')">Delete</button></td></tr>`).join('');
+  },
+  openAddAnn(){
+    this.setText('ann-mti','Add Announcement');
+    document.getElementById('an-id').value='';
+    document.getElementById('an-msg').value='';
+    document.getElementById('an-active').value='true';
+    this.om('m-ann');
+  },
+  openEditAnn(id){
+    const a=this.db.announcements?.find(a=>a.id===id); if(!a)return;
+    this.setText('ann-mti','Edit Announcement');
+    document.getElementById('an-id').value=a.id;
+    document.getElementById('an-msg').value=a.message;
+    document.getElementById('an-active').value=String(a.active);
+    this.om('m-ann');
+  },
+  async saveAnn(){
+    const id=document.getElementById('an-id').value;
+    const msg=document.getElementById('an-msg').value.trim();
+    const act=document.getElementById('an-active').value==='true';
+    if (!msg){this.toast('Message required','e');return;}
+    const ann={id:id||'ann_'+Date.now(),message:msg,active:act};
+    const r=await this.post({action:'saveAnnouncement',announcement:ann});
+    if (r.success){await this.syncDb();this.cm('m-ann');this.renderAnns();this.toast('Saved ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+  async deleteAnn(id){
+    if (!confirm('Delete this announcement?'))return;
+    this.db.announcements=this.db.announcements.filter(a=>a.id!==id);
+    const r=await this.post({action:'saveDb',db:this.db});
+    if (r.success){this.renderAnns();this.toast('Deleted ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+
+  /* ── LEVELS ── */
+  renderLevels(){
+    const levels=this.db?.levels||[];
+    document.getElementById('levels-rows').innerHTML=levels.map(l=>`<div class="lvl-row" data-lvl="${l.level}"><div style="font-size:13px;font-weight:800;color:var(--bl)">${l.level}</div><input class="lvl-inp" type="text" value="${this.esc(l.name)}" data-field="name" placeholder="Name"><input class="lvl-inp" type="number" value="${l.deposit}" data-field="deposit" placeholder="0"><input class="lvl-inp" type="number" value="${l.per_order}" data-field="per_order" placeholder="0"><input class="lvl-inp" type="number" value="${l.daily_tasks}" data-field="daily_tasks" placeholder="0"></div>`).join('');
+  },
+  async saveLevels(){
+    const rows=document.querySelectorAll('.lvl-row');
+    const levels=[];
+    rows.forEach(r=>{
+      const lvl=parseInt(r.dataset.lvl);
+      const inps=r.querySelectorAll('.lvl-inp');
+      levels.push({level:lvl,name:inps[0].value.trim(),deposit:parseFloat(inps[1].value)||0,per_order:parseFloat(inps[2].value)||0,daily_tasks:parseInt(inps[3].value)||0});
+    });
+    const r=await this.post({action:'saveLevels',levels});
+    if (r.success){this.db.levels=levels;this.toast('VIP levels saved ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+
+  /* ── SETTINGS ── */
+  renderSettings(){
+    const s=this.db?.settings||{};
+    this.setVal('s-site-name',s.site_name||'');
+    this.setVal('s-tagline',s.tagline||'');
+    this.setVal('s-site-url',s.site_url||'');
+    this.setVal('s-bank-name',s.bank_name||'');
+    this.setVal('s-bank-acct',s.bank_account||'');
+    this.setVal('s-bank-aname',s.bank_account_name||'');
+    this.setVal('s-min-dep',s.min_deposit||1000);
+    this.setVal('s-min-wd',s.min_withdraw||1000);
+    this.setVal('s-ref-pct',s.referral_bonus_pct||5);
+    this.setVal('s-email',s.support_email||'');
+    this.setVal('s-whatsapp',s.support_whatsapp||'');
+    document.getElementById('s-maint').checked=!!s.maintenance;
+    this.setVal('s-maint-msg',s.maintenance_msg||'');
+  },
+  async saveSettings(){
+    const settings={
+      site_name:         document.getElementById('s-site-name').value.trim(),
+      tagline:           document.getElementById('s-tagline').value.trim(),
+      site_url:          document.getElementById('s-site-url').value.trim(),
+      bank_name:         document.getElementById('s-bank-name').value.trim(),
+      bank_account:      document.getElementById('s-bank-acct').value.trim(),
+      bank_account_name: document.getElementById('s-bank-aname').value.trim(),
+      min_deposit:       parseFloat(document.getElementById('s-min-dep').value)||1000,
+      min_withdraw:      parseFloat(document.getElementById('s-min-wd').value)||1000,
+      referral_bonus_pct:parseFloat(document.getElementById('s-ref-pct').value)||5,
+      support_email:     document.getElementById('s-email').value.trim(),
+      support_whatsapp:  document.getElementById('s-whatsapp').value.trim(),
+      maintenance:       document.getElementById('s-maint').checked,
+      maintenance_msg:   document.getElementById('s-maint-msg').value.trim()
+    };
+    const r=await this.post({action:'saveSettings',settings});
+    if (r.success){this.db.settings={...this.db.settings,...settings};this.toast('Settings saved ✓','s');}
+    else this.toast(r.error||'Failed','e');
+  },
+  async changePassword(){
+    const curr=document.getElementById('s-curr-pass').value;
+    const nw=document.getElementById('s-new-pass').value;
+    const conf=document.getElementById('s-conf-pass').value;
+    if (!curr||!nw||!conf){this.toast('Fill in all password fields','e');return;}
+    if (nw!==conf){this.toast('New passwords do not match','e');return;}
+    if (nw.length<6){this.toast('Password must be at least 6 characters','e');return;}
+    const admin=this.db.admins?.find(a=>a.id===this.admin.id);
+    if (!admin||admin.password!==curr){this.toast('Current password is incorrect','e');return;}
+    admin.password=nw;
+    const r=await this.post({action:'saveDb',db:this.db});
+    if (r.success){
+      this.admin.password=nw; localStorage.setItem('earnix_admin',JSON.stringify(this.admin));
+      ['s-curr-pass','s-new-pass','s-conf-pass'].forEach(id=>document.getElementById(id).value='');
+      this.toast('Password changed ✓','s');
+    }else this.toast(r.error||'Failed','e');
+  },
+
+  /* ── MODALS ── */
+  om(id){document.getElementById(id).classList.add('show');},
+  cm(id){document.getElementById(id).classList.remove('show');},
+
+  /* ── HELPERS ── */
+  setText(id,t){const e=document.getElementById(id);if(e)e.textContent=t;},
+  setVal(id,v){const e=document.getElementById(id);if(e)e.value=v;},
+  fmt(n){return (parseFloat(n)||0).toLocaleString('en-NG',{minimumFractionDigits:0,maximumFractionDigits:0});},
+  esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');},
+  ds(d){try{return new Date(d).toLocaleDateString('en-NG',{month:'short',day:'numeric',year:'2-digit'})}catch{return '—'}},
+  dl(d){try{return new Date(d).toLocaleString('en-NG',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}catch{return '—'}},
+  pEmoji(p){return {TikTok:'🎵',YouTube:'▶️',Instagram:'📸',Facebook:'👍',Twitter:'🐦'}[p]||'📱';},
+
+  toast(msg,type='i'){
+    const el=document.getElementById('toast');
+    el.textContent=msg; el.className='show '+type;
+    clearTimeout(this._t); this._t=setTimeout(()=>el.className='',3200);
+  }
+};
+
+['adm-u','adm-p'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')adm.login();}));
+document.querySelectorAll('.mov').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('show');}));
+if(window.innerWidth<=768) document.getElementById('menu-btn').style.display='block';
+
+adm.init();
+</script>
+</body>
+</html>
